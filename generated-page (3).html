@@ -1,0 +1,2041 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riara School - Excellence in Education</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <style>
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+        .text-primary { color: #B5935A; }
+        .text-accent { color: #6A2E91; }
+        .bg-primary { background-color: #B5935A; }
+        .bg-accent { background-color: #6A2E91; }
+        .border-primary { border-color: #B5935A; }
+        .border-accent { border-color: #6A2E91; }
+        .bg-cream { background-color: #FEFCF8; }
+        .page { display: none; }
+        .page.active { display: block; }
+        .hero-gradient { background: linear-gradient(135deg, #B5935A 0%, #6A2E91 100%); }
+        
+        /* Menu styles */
+        .menu-overlay { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0, 0, 0, 0.5); 
+            z-index: 1000; 
+            opacity: 0; 
+            visibility: hidden; 
+            transition: all 0.3s ease; 
+        }
+        .menu-overlay.active { opacity: 1; visibility: visible; }
+        
+        .menu-panel { 
+            position: fixed; 
+            top: 0; 
+            right: 0; 
+            width: 320px; 
+            height: 100%; 
+            background: white; 
+            transform: translateX(100%); 
+            transition: transform 0.3s ease; 
+            z-index: 1001; 
+            overflow-y: auto; 
+        }
+        .menu-panel.active { transform: translateX(0); }
+        
+        .gallery-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 1.5rem; 
+        }
+        
+        .gallery-item { 
+            cursor: pointer; 
+            transition: transform 0.2s ease; 
+        }
+        .gallery-item:hover { transform: scale(1.02); }
+        
+        .modal { 
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0,0,0,0.8); 
+        }
+        .modal.active { display: flex; align-items: center; justify-content: center; }
+        
+        .btn-primary { 
+            background-color: #B5935A; 
+            color: white; 
+            padding: 0.75rem 1.5rem; 
+            border-radius: 0.5rem; 
+            font-weight: 600; 
+            transition: all 0.2s; 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        .btn-primary:hover { background-color: #9A7B47; }
+        
+        .btn-secondary { 
+            border: 2px solid #B5935A; 
+            color: #B5935A; 
+            padding: 0.75rem 1.5rem; 
+            border-radius: 0.5rem; 
+            font-weight: 600; 
+            transition: all 0.2s; 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        .btn-secondary:hover { background-color: #B5935A; color: white; }
+        
+        .form-input { 
+            width: 100%; 
+            padding: 0.75rem; 
+            border: 1px solid #D1D5DB; 
+            border-radius: 0.5rem; 
+            font-size: 1rem; 
+        }
+        .form-input:focus { 
+            outline: none; 
+            border-color: #B5935A; 
+            box-shadow: 0 0 0 3px rgba(181, 147, 90, 0.1); 
+        }
+        
+        .animate-fade-in { animation: fadeIn 0.8s ease-out forwards; }
+        .animate-slide-up { animation: slideUp 0.8s ease-out forwards; }
+        .animate-slide-right { animation: slideRight 0.8s ease-out forwards; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideRight {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-600 { animation-delay: 0.6s; }
+    </style>
+</head>
+<body class="font-inter text-gray-900 bg-cream">
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3 animate-slide-right">
+                <img src="images/logo.jpg" alt="Riara School Logo" class="h-10 w-auto object-contain" />
+                    <div>
+                        <h1 class="font-playfair font-semibold text-lg text-gray-900">Riara School</h1>
+                        <p class="text-xs text-gray-600 -mt-1">Excellence in Education</p>
+                    </div>
+                </div>
+                
+                <button id="menuToggle" class="p-2 rounded-md hover:bg-gray-100 transition-colors animate-fade-in">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Menu Overlay -->
+    <div id="menuOverlay" class="menu-overlay">
+        <div id="menuPanel" class="menu-panel">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-8">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                            <span class="text-white font-playfair font-semibold">R</span>
+                        </div>
+                        <span class="font-playfair font-semibold text-lg">Riara School</span>
+                    </div>
+                    <button id="menuClose" class="p-2 rounded-md hover:bg-gray-100">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+                
+                <nav class="space-y-2">
+                    <a href="#" class="flex items-center space-x-3 py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" onclick="showPage('home')">
+                        <i data-lucide="home" class="w-5 h-5"></i>
+                        <span class="font-medium">Home</span>
+                    </a>
+                    
+                    <a href="#" class="flex items-center space-x-3 py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" onclick="showPage('about')">
+                        <i data-lucide="info" class="w-5 h-5"></i>
+                        <span class="font-medium">About Us</span>
+                    </a>
+                    
+                    <!-- <a href="#" class="flex items-center space-x-3 py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" onclick="showPage('leadership')">
+                        <i data-lucide="users" class="w-5 h-5"></i>
+                        <span class="font-medium">Leadership</span>
+                    </a> -->
+                    
+                    <a href="#" class="flex items-center space-x-3 py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" onclick="showPage('news')">
+                        <i data-lucide="target" class="w-5 h-5"></i>
+                        <span class="font-medium">News &amp; Events</span>
+                    </a>
+                    
+                    <a href="#" class="flex items-center space-x-3 py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" onclick="showPage('academics')">
+                        <i data-lucide="book-open" class="w-5 h-5"></i>
+                        <span class="font-medium">Academic Programs</span>
+                    </a>
+                    
+                    <a href="#" class="flex items-center space-x-3 py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" onclick="showPage('results')">
+                        <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
+                        <span class="font-medium">Academic Results</span>
+                    </a>
+                    
+                    <a href="#" class="flex items-center space-x-3 py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" onclick="showPage('admissions')">
+                        <i data-lucide="user-plus" class="w-5 h-5"></i>
+                        <span class="font-medium">Admissions</span>
+                    </a>
+                    
+                    <a href="#" class="flex items-center space-x-3 py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" onclick="showPage('gallery')">
+                        <i data-lucide="image" class="w-5 h-5"></i>
+                        <span class="font-medium">Gallery</span>
+                    </a>
+                    
+                    <a href="#" class="flex items-center space-x-3 py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" onclick="showPage('contact')">
+                        <i data-lucide="phone" class="w-5 h-5"></i>
+                        <span class="font-medium">Contact</span>
+                    </a>
+                    
+                    <a href="#" class="flex items-center space-x-3 py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" onclick="showPage('contact')">
+                        <i data-lucide="phone" class="w-5 h-5"></i>
+                        <span class="font-medium">404 Page</span>
+                    </a>
+
+                                        <a href="#" class="flex items-center space-x-3 py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" onclick="showPage('contact')">
+                        <i data-lucide="phone" class="w-5 h-5"></i>
+                        <span class="font-medium">Privacy Policy</span>
+                    </a>
+
+                    <div class="pt-6 border-t border-gray-200">
+                        <button class="w-full bg-primary text-white py-3 rounded-lg font-medium hover:bg-opacity-90 transition-colors" onclick="showPage('admissions')">
+                            Login
+                        </button>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="" class="max-w-full max-h-full rounded-lg">
+        </div>
+        <button class="absolute top-4 right-4 text-white text-2xl hover:text-gray-300 transition-colors" onclick="closeModal()">×</button>
+    </div>
+
+    <!-- HOME PAGE -->
+    <div id="home" class="page active">
+        <!-- Hero Section -->
+        <section class="relative bg-gradient-to-r from-slate-900 to-slate-800 text-white">
+            <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+            <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=2000&amp;q=80')"></div>
+            
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+                <div class="max-w-3xl">
+                    <h1 class="font-playfair text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight tracking-tight animate-slide-up">
+                        Nurturing Excellence, Inspiring Future Leaders
+                    </h1>
+                    <p class="mt-6 text-xl text-gray-200 leading-relaxed animate-slide-up delay-200">
+                        At Riara School, we provide world-class education that develops critical thinking, creativity, and character in every student.
+                    </p>
+                    <div class="mt-10 flex flex-col sm:flex-row gap-4 animate-slide-up delay-300">
+                        <button class="btn-primary" onclick="showPage('admissions')">
+                            <span>Apply Now</span>
+                            <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+                        </button>
+                        <button class="btn-secondary border-white text-white hover:bg-white hover:text-gray-900" onclick="showPage('contact')">
+                            Book a Tour
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+            <!-- Stats Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="text-4xl font-playfair font-semibold stat-counter mb-2">30+</div>
+                    <p class="text-gray-600 font-medium">Years of Excellence</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-playfair font-semibold stat-counter mb-2">1,200+</div>
+                    <p class="text-gray-600 font-medium">Students</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-playfair font-semibold stat-counter mb-2">98%</div>
+                    <p class="text-gray-600 font-medium">University Acceptance</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-playfair font-semibold stat-counter mb-2">50+</div>
+                    <p class="text-gray-600 font-medium">Expert Faculty</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- About Preview Section -->
+    <section class="py-16 lg:py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="font-playfair text-3xl md:text-4xl font-semibold text-gray-900 tracking-tight mb-6">
+                        About Riara School
+                    </h2>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                        For over three decades, Riara School has been at the forefront of educational excellence in Kenya. We are committed to developing well-rounded individuals who are academically prepared, morally grounded, and globally minded.
+                    </p>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-8">
+                        Our holistic approach to education ensures that every student receives personalized attention and opportunities to discover their unique talents and potential.
+                    </p>
+                        <button class="text-primary font-semibold flex items-center space-x-2 hover:text-accent transition-colors" onclick="showPage('about')">
+                            <span>Learn More About Us</span>
+                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </button>
+                </div>
+                <div class="relative">
+                    <div class="absolute -top-4 -left-4 w-full h-full bg-primary rounded-lg opacity-20"></div>
+                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Students in classroom" class="relative rounded-lg shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+        <!-- Why Choose Us Section -->
+        <section class="py-16 lg:py-24 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 animate-slide-up">
+                    <h2 class="font-playfair text-3xl md:text-4xl font-semibold text-gray-900 tracking-tight mb-4">
+                        Why Choose Riara School?
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        We offer a comprehensive educational experience that prepares students for success in all aspects of life.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="text-center animate-slide-up delay-100">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i data-lucide="heart" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-4">Holistic Development</h3>
+                        <p class="text-gray-600">Nurturing mind, body, and spirit through comprehensive programs that develop the whole child.</p>
+                    </div>
+                    
+                    <div class="text-center animate-slide-up delay-200">
+                        <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i data-lucide="trophy" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-4">Academic Excellence</h3>
+                        <p class="text-gray-600">Rigorous curriculum and innovative teaching methods that challenge and inspire students to achieve their best.</p>
+                    </div>
+                    
+                    <div class="text-center animate-slide-up delay-300">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i data-lucide="users" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-4">Alumni Network</h3>
+                        <p class="text-gray-600">Strong community of successful graduates who continue to make positive impacts in their communities.</p>
+                    </div>
+                    
+                    <div class="text-center animate-slide-up delay-400">
+                        <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i data-lucide="star" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-4">Personalized Learning</h3>
+                        <p class="text-gray-600">Small class sizes and individualized attention to ensure every student reaches their full potential.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Academic Levels Section -->
+        <section class="py-16 lg:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 animate-slide-up">
+                    <h2 class="font-playfair text-3xl md:text-4xl font-semibold text-gray-900 tracking-tight mb-4">
+                        Academic Levels
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        Comprehensive education from early years through senior secondary, designed to build strong foundations and prepare students for their future.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow animate-slide-up delay-100">
+                        <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-4">
+                            <i data-lucide="baby" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-3">Early Years</h3>
+                        <p class="text-gray-600 mb-4">Foundation for lifelong learning through play-based education and nurturing care.</p>
+                        <button class="text-primary font-semibold hover:text-accent transition-colors" onclick="showPage('academics')">Learn More →</button>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow animate-slide-up delay-200">
+                        <div class="w-12 h-12 bg-accent rounded-lg flex items-center justify-center mb-4">
+                            <i data-lucide="book-open" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-3">Primary</h3>
+                        <p class="text-gray-600 mb-4">Building essential skills in literacy, numeracy, and critical thinking through engaging curricula.</p>
+                        <button class="text-primary font-semibold hover:text-accent transition-colors" onclick="showPage('academics')">Learn More →</button>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow animate-slide-up delay-300">
+                        <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-4">
+                            <i data-lucide="graduation-cap" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-3">Secondary</h3>
+                        <p class="text-gray-600 mb-4">Preparing students for national examinations and future academic pursuits with comprehensive support.</p>
+                        <button class="text-primary font-semibold hover:text-accent transition-colors" onclick="showPage('academics')">Learn More →</button>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow animate-slide-up delay-400">
+                        <div class="w-12 h-12 bg-accent rounded-lg flex items-center justify-center mb-4">
+                            <i data-lucide="award" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-3">A-Levels</h3>
+                        <p class="text-gray-600 mb-4">Advanced level education preparing students for university admission and global opportunities.</p>
+                        <button class="text-primary font-semibold hover:text-accent transition-colors" onclick="showPage('academics')">Learn More →</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+ <!-- Testimonials Section -->
+    <section class="py-16 lg:py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-slide-up">
+                <h2 class="font-playfair text-3xl md:text-4xl font-semibold text-gray-900 tracking-tight mb-4">
+                    What Our Community Says
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Hear from parents, students, and alumni about their Riara School experience.
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="testimonial-card rounded-lg p-6 border border-gray-200 animate-slide-up delay-100">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b332db72?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Parent" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Sarah Kimani</h4>
+                            <p class="text-gray-600 text-sm">Parent</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed">"The teachers at Riara School truly care about each child's development. My daughter has flourished both academically and personally."</p>
+                </div>
+                
+                <div class="testimonial-card rounded-lg p-6 border border-gray-200 animate-slide-up delay-200">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Alumni" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-900">David Mwangi</h4>
+                            <p class="text-gray-600 text-sm">Alumni, Class of 2018</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed">"Riara School prepared me exceptionally well for university. The values and skills I learned here continue to serve me in my career."</p>
+                </div>
+                
+                <div class="testimonial-card rounded-lg p-6 border border-gray-200 animate-slide-up delay-300">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Student" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Grace Wanjiku</h4>
+                            <p class="text-gray-600 text-sm">Current Student</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed">"I love the supportive environment and the many opportunities to explore my interests through clubs and activities."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- CTA Section -->
+        <section class="py-16 lg:py-24 bg-primary text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="max-w-3xl mx-auto animate-slide-up">
+                    <h2 class="font-playfair text-3xl md:text-4xl font-semibold mb-6">
+                        Ready to Join Our Community?
+                    </h2>
+                    <p class="text-xl text-gray-200 mb-8">
+                        Take the first step towards your child's bright future at Riara School.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button class="bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors" onclick="showPage('admissions')">
+                            Start Application
+                        </button>
+                        <button class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary transition-colors" onclick="showPage('contact')">
+                            Schedule Visit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="about" class="page">
+        <section">
+            <!-- Hero Section -->
+            <section class="relative bg-gradient-to-r from-slate-900 to-slate-800 text-white overflow-hidden">
+                <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+                <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')"></div>
+                
+                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+                    <div class="text-center">
+                        <h1 class="font-playfair text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight tracking-tight animate-slide-up">
+                            Our Story
+                        </h1>
+                        <p class="mt-6 text-xl text-gray-200 leading-relaxed max-w-3xl mx-auto animate-slide-up delay-200">
+                            Three decades of educational excellence, countless success stories, and an unwavering commitment to nurturing future leaders.
+                        </p>
+                    </div>
+                </div>
+            </section>
+                
+            <!-- Introduction Section -->
+            <section class="py-16 lg:py-24 bg-white">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-12">
+                        <h2 class="font-playfair text-3xl md:text-4xl font-semibold text-gray-900 tracking-tight mb-8">
+                            A Legacy of Excellence
+                        </h2>
+                        <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                            Founded in 1992, Riara School began as a vision to create an educational institution that would not only impart knowledge but shape character, inspire creativity, and foster a lifelong love for learning. What started as a small community school has grown into one of Kenya's most respected educational institutions.
+                        </p>
+                        <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                            Our journey has been marked by continuous innovation, unwavering commitment to excellence, and a deep understanding that every child is unique. We believe that education is not just about academic achievement, but about developing well-rounded individuals who will contribute meaningfully to society.
+                        </p>
+                        <p class="text-lg text-gray-600 leading-relaxed">
+                            Today, we stand proud as a beacon of educational excellence, having graduated thousands of students who have gone on to become leaders, innovators, and changemakers in their respective fields. Our legacy is built on the foundation of our core values and the dedication of our exceptional faculty and staff.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mission & Vision Section -->
+            <section class="py-16 lg:py-24 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="font-playfair text-3xl md:text-4xl font-semibold text-gray-900 tracking-tight mb-4">
+                            Our Mission & Vision
+                        </h2>
+                        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                            Guiding principles that drive everything we do at Riara School
+                        </p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-white rounded-lg p-8 shadow-sm border border-gray-100 card-hover">
+                            <div class="flex items-center mb-6">
+                                <div class="w-16 h-16 bg-primary rounded-lg flex items-center justify-center mr-4">
+                                    <i data-lucide="target" class="w-8 h-8 text-white"></i>
+                                </div>
+                                <h3 class="font-playfair text-2xl font-semibold text-gray-900">Our Mission</h3>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed text-lg">
+                                To provide quality education that develops critical thinking, creativity, and character in every student. We are committed to nurturing well-rounded individuals who are academically prepared, morally grounded, and globally minded, ready to make meaningful contributions to society.
+                            </p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-8 shadow-sm border border-gray-100 card-hover">
+                            <div class="flex items-center mb-6">
+                                <div class="w-16 h-16 bg-accent rounded-lg flex items-center justify-center mr-4">
+                                    <i data-lucide="eye" class="w-8 h-8 text-white"></i>
+                                </div>
+                                <h3 class="font-playfair text-2xl font-semibold text-gray-900">Our Vision</h3>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed text-lg">
+                                To be the leading educational institution in East Africa, recognized for excellence in holistic education, innovation in teaching methodologies, and developing future leaders who will positively impact their communities and the world at large.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Core Values Section -->
+            <section class="py-16 lg:py-24 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="font-playfair text-3xl md:text-4xl font-semibold text-gray-900 tracking-tight mb-4">
+                            Our Core Values
+                        </h2>
+                        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                            The fundamental principles that guide our approach to education and shape our school culture
+                        </p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="text-center group">
+                            <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-accent transition-colors">
+                                <i data-lucide="shield-check" class="w-10 h-10 text-white"></i>
+                            </div>
+                            <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-3">Integrity</h3>
+                            <p class="text-gray-600">We uphold the highest standards of honesty, transparency, and ethical conduct in all our interactions and decisions.</p>
+                        </div>
+                        
+                        <div class="text-center group">
+                            <div class="w-20 h-20 bg-accent rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary transition-colors">
+                                <i data-lucide="trophy" class="w-10 h-10 text-white"></i>
+                            </div>
+                            <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-3">Excellence</h3>
+                            <p class="text-gray-600">We strive for excellence in everything we do, continuously improving and setting high standards for achievement.</p>
+                        </div>
+                        
+                        <div class="text-center group">
+                            <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-accent transition-colors">
+                                <i data-lucide="users" class="w-10 h-10 text-white"></i>
+                            </div>
+                            <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-3">Community</h3>
+                            <p class="text-gray-600">We foster a supportive and inclusive environment where everyone feels valued, respected, and empowered to contribute.</p>
+                        </div>
+                        
+                        <div class="text-center group">
+                            <div class="w-20 h-20 bg-accent rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary transition-colors">
+                                <i data-lucide="trending-up" class="w-10 h-10 text-white"></i>
+                            </div>
+                            <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-3">Growth</h3>
+                            <p class="text-gray-600">We believe in continuous learning, personal development, and the potential for every individual to grow and succeed.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Leadership Team Section -->
+            <section class="py-16 lg:py-24 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="font-playfair text-3xl md:text-4xl font-semibold text-gray-900 tracking-tight mb-4">
+                            Our Leadership Team
+                        </h2>
+                        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                            Meet the experienced educators and administrators who guide our school's vision and daily operations
+                        </p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-100 card-hover text-center">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Dr. James Mwangi" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                            <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-2">Dr. James Mwangi</h3>
+                            <p class="text-primary font-medium mb-3">Principal</p>
+                            <p class="text-gray-600 text-sm">With over 25 years in education, Dr. Mwangi leads our institution with passion for academic excellence and student development.</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-100 card-hover text-center">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Mrs. Grace Njoroge" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                            <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-2">Mrs. Grace Njoroge</h3>
+                            <p class="text-accent font-medium mb-3">Deputy Principal</p>
+                            <p class="text-gray-600 text-sm">A dedicated educator with expertise in curriculum development and student welfare, ensuring holistic growth for all students.</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-100 card-hover text-center">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Mr. Peter Kimani" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                            <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-2">Mr. Peter Kimani</h3>
+                            <p class="text-primary font-medium mb-3">Academic Director</p>
+                            <p class="text-gray-600 text-sm">Leading our academic programs with innovation and excellence, ensuring rigorous standards and student success.</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-100 card-hover text-center">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Dr. Sarah Wanjiku" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                            <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-2">Dr. Sarah Wanjiku</h3>
+                            <p class="text-accent font-medium mb-3">Head of Student Affairs</p>
+                            <p class="text-gray-600 text-sm">Committed to student wellness and character development, creating a nurturing environment for all learners.</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-100 card-hover text-center">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Mr. David Ochieng" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                            <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-2">Mr. David Ochieng</h3>
+                            <p class="text-primary font-medium mb-3">Head of Innovation</p>
+                            <p class="text-gray-600 text-sm">Driving technological integration and innovative teaching methods to prepare students for the digital future.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <!-- CTA Section -->
+            <section class="py-16 lg:py-24 bg-primary">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h2 class="font-playfair text-3xl md:text-4xl font-semibold text-white tracking-tight mb-6">
+                        Experience Riara School Firsthand
+                    </h2>
+                    <p class="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+                        We invite you to visit our campus, meet our faculty, and see how we're shaping the leaders of tomorrow.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button class="bg-white text-primary px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center space-x-2">
+                            <i data-lucide="calendar" class="w-5 h-5"></i>
+                            <span>Schedule a Visit</span>
+                        </button>
+                        <button class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary transition-colors flex items-center justify-center space-x-2">
+                            <i data-lucide="phone" class="w-5 h-5"></i>
+                            <span>Contact Us</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </div>
+
+
+    <!-- ACADEMICS PAGE -->
+    <div id="academics" class="page">
+        <section class="py-16 lg:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 animate-slide-up">
+                    <h1 class="font-playfair text-4xl md:text-5xl font-semibold text-gray-900 tracking-tight mb-6">
+                        Academic Programs
+                    </h1>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Comprehensive educational programs designed to challenge, inspire, and prepare students for success at every level.
+                    </p>
+                </div>
+                
+                <div class="space-y-16">
+                    <!-- Early Years -->
+                    <div class="grid lg:grid-cols-2 gap-12 items-center animate-slide-up delay-100">
+                        <div>
+                            <h2 class="font-playfair text-3xl font-semibold text-gray-900 mb-6">Early Years (Ages 3-6)</h2>
+                            <p class="text-lg text-gray-600 mb-6">
+                                Our Early Years program provides a nurturing foundation for lifelong learning through play-based education and structured activities.
+                            </p>
+                            <ul class="space-y-3 text-gray-600">
+                                <li class="flex items-start space-x-3">
+                                    <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                                    <span>Play-based learning approach</span>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                                    <span>Language and literacy development</span>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                                    <span>Creative arts and expression</span>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                                    <span>Social and emotional development</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Early Years" class="rounded-lg shadow-lg">
+                        </div>
+                    </div>
+                    
+                    <!-- Primary -->
+                    <div class="grid lg:grid-cols-2 gap-12 items-center animate-slide-up delay-200">
+                        <div class="lg:order-2">
+                            <h2 class="font-playfair text-3xl font-semibold text-gray-900 mb-6">Primary Education (Grades 1-8)</h2>
+                            <p class="text-lg text-gray-600 mb-6">
+                                Building essential skills in literacy, numeracy, and critical thinking through engaging and comprehensive curricula.
+                            </p>
+                            <ul class="space-y-3 text-gray-600">
+                                <li class="flex items-start space-x-3">
+                                    <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                                    <span>Competency-based curriculum (CBC)</span>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                                    <span>Science, technology, and mathematics</span>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                                    <span>Languages and communication</span>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                                    <span>Sports and physical education</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="lg:order-1">
+                            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Primary Education" class="rounded-lg shadow-lg">
+                        </div>
+                    </div>
+                    
+                    <!-- Secondary -->
+                    <div class="grid lg:grid-cols-2 gap-12 items-center animate-slide-up delay-300">
+                        <div>
+                            <h2 class="font-playfair text-3xl font-semibold text-gray-900 mb-6">Secondary Education (Forms 1-4)</h2>
+                            <p class="text-lg text-gray-600 mb-6">
+                                Preparing students for national examinations and future academic pursuits with comprehensive support and guidance.
+                            </p>
+                            <ul class="space-y-3 text-gray-600">
+                                <li class="flex items-start space-x-3">
+                                    <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                                    <span>KCSE examination preparation</span>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                                    <span>Sciences and mathematics</span>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                                    <span>Humanities and social sciences</span>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                                    <span>Career guidance and counseling</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Secondary Education" class="rounded-lg shadow-lg">
+                        </div>
+                    </div>
+                    
+                    <!-- A-Levels -->
+                    <div class="grid lg:grid-cols-2 gap-12 items-center animate-slide-up delay-400">
+                        <div class="lg:order-2">
+                            <h2 class="font-playfair text-3xl font-semibold text-gray-900 mb-6">A-Level Education (Forms 5-6)</h2>
+                            <p class="text-lg text-gray-600 mb-6">
+                                Advanced level education preparing students for university admission and global opportunities with specialized subjects.
+                            </p>
+                            <ul class="space-y-3 text-gray-600">
+                                <li class="flex items-start space-x-3">
+                                    <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                                    <span>Cambridge A-Level curriculum</span>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                                    <span>University application support</span>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                                    <span>Specialized subject focus</span>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5"></i>
+                                    <span>International recognition</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="lg:order-1">
+                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="A-Level Education" class="rounded-lg shadow-lg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- RESULTS PAGE -->
+    <div id="results" class="page">
+        <section class="py-16 lg:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 animate-slide-up">
+                    <h1 class="font-playfair text-4xl md:text-5xl font-semibold text-gray-900 tracking-tight mb-6">
+                        Academic Results
+                    </h1>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Our commitment to excellence is reflected in our outstanding academic performance and student achievements.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                    <div class="bg-primary text-white rounded-xl p-6 text-center animate-slide-up delay-100">
+                        <div class="text-4xl font-bold mb-2">95%</div>
+                        <div class="text-sm opacity-90">KCSE Pass Rate</div>
+                    </div>
+                    <div class="bg-accent text-white rounded-xl p-6 text-center animate-slide-up delay-200">
+                        <div class="text-4xl font-bold mb-2">87%</div>
+                        <div class="text-sm opacity-90">A-Level Pass Rate</div>
+                    </div>
+                    <div class="bg-primary text-white rounded-xl p-6 text-center animate-slide-up delay-300">
+                        <div class="text-4xl font-bold mb-2">92%</div>
+                        <div class="text-sm opacity-90">University Admission</div>
+                    </div>
+                    <div class="bg-accent text-white rounded-xl p-6 text-center animate-slide-up delay-400">
+                        <div class="text-4xl font-bold mb-2">30+</div>
+                        <div class="text-sm opacity-90">Years of Excellence</div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-8 mb-16 animate-slide-up delay-500">
+                    <h2 class="font-playfair text-3xl font-semibold text-gray-900 text-center mb-8">Recent Achievements</h2>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-4">KCSE Results 2023</h3>
+                            <ul class="space-y-2 text-gray-600">
+                                <li>• 45% of students achieved grades A- and above</li>
+                                <li>• 78% qualified for university admission</li>
+                                <li>• Top performer scored 82 points</li>
+                                <li>• 100% pass rate in Mathematics</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-4">A-Level Results 2023</h3>
+                            <ul class="space-y-2 text-gray-600">
+                                <li>• 89% achieved grades A*-C</li>
+                                <li>• 94% gained university admission</li>
+                                <li>• Strong performance in Sciences</li>
+                                <li>• International university placements</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="animate-slide-up delay-600">
+                    <h2 class="font-playfair text-3xl font-semibold text-gray-900 text-center mb-8">Performance Chart</h2>
+                    <div class="bg-white rounded-xl shadow-lg p-8">
+                        <canvas id="performanceChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ADMISSIONS PAGE -->
+    <div id="admissions" class="page">
+        <section>
+            <div>
+            <!-- Hero Section -->
+            <section class="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
+                <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+                <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')"></div>
+                
+                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+                    <div class="text-center">
+                        <h1 class="font-playfair text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight tracking-tight fade-in">
+                            Join the Riara Family
+                        </h1>
+                        <p class="mt-6 text-xl text-gray-200 leading-relaxed max-w-3xl mx-auto slide-up delay-200">
+                            We welcome students and parents into a nurturing environment focused on excellence.
+                        </p>
+                        <div class="mt-8 slide-up delay-300">
+                            <button class="bg-primary text-white px-8 py-4 rounded-lg font-semibold hover:bg-opacity-90 transition-all hover-lift">
+                                Start Application
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Admission Process -->
+            <section class="py-16 lg:py-24 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="font-playfair text-3xl md:text-4xl font-semibold text-gray-900 tracking-tight mb-6">
+                            Simple Admission Process
+                        </h2>
+                        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                            Our streamlined four-step process makes joining Riara School easy and stress-free.
+                        </p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="relative step-connector">
+                            <div class="text-center">
+                                <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6 relative">
+                                    <i data-lucide="file-text" class="w-10 h-10 text-white"></i>
+                                    <div class="absolute -top-2 -right-2 w-8 h-8 bg-accent rounded-full flex items-center justify-center">
+                                        <span class="text-white font-semibold text-sm">1</span>
+                                    </div>
+                                </div>
+                                <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-3">Fill Application Form</h3>
+                                <p class="text-gray-600 text-sm">Complete our comprehensive online application form with accurate student information.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="relative step-connector">
+                            <div class="text-center">
+                                <div class="w-20 h-20 bg-accent rounded-full flex items-center justify-center mx-auto mb-6 relative">
+                                    <i data-lucide="folder" class="w-10 h-10 text-white"></i>
+                                    <div class="absolute -top-2 -right-2 w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                                        <span class="text-white font-semibold text-sm">2</span>
+                                    </div>
+                                </div>
+                                <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-3">Submit Required Documents</h3>
+                                <p class="text-gray-600 text-sm">Provide all necessary documents based on your child's educational level.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="relative step-connector">
+                            <div class="text-center">
+                                <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6 relative">
+                                    <i data-lucide="user-check" class="w-10 h-10 text-white"></i>
+                                    <div class="absolute -top-2 -right-2 w-8 h-8 bg-accent rounded-full flex items-center justify-center">
+                                        <span class="text-white font-semibold text-sm">3</span>
+                                    </div>
+                                </div>
+                                <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-3">Interview & Assessment</h3>
+                                <p class="text-gray-600 text-sm">Attend a friendly interview and age-appropriate assessment to determine placement.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="relative">
+                            <div class="text-center">
+                                <div class="w-20 h-20 bg-accent rounded-full flex items-center justify-center mx-auto mb-6 relative">
+                                    <i data-lucide="check-circle" class="w-10 h-10 text-white"></i>
+                                    <div class="absolute -top-2 -right-2 w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                                        <span class="text-white font-semibold text-sm">4</span>
+                                    </div>
+                                </div>
+                                <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-3">Confirmation & Enrollment</h3>
+                                <p class="text-gray-600 text-sm">Receive confirmation and complete enrollment to begin your Riara journey.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Admission Requirements -->
+            <section class="py-16 lg:py-24 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="font-playfair text-3xl md:text-4xl font-semibold text-gray-900 tracking-tight mb-6">
+                            Admission Requirements
+                        </h2>
+                        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                            Requirements vary by educational level. Please review the specific requirements for your child's age group.
+                        </p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Early Years & Primary -->
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8 hover-lift">
+                            <div class="text-center mb-6">
+                                <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i data-lucide="baby" class="w-8 h-8 text-white"></i>
+                                </div>
+                                <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-2">Early Years & Primary</h3>
+                                <p class="text-primary font-medium">Age: 3-11 years</p>
+                            </div>
+                            
+                            <div class="space-y-3">
+                                <h4 class="font-semibold text-gray-900 mb-3">Required Documents:</h4>
+                                <div class="flex items-start space-x-3">
+                                    <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"></i>
+                                    <span class="text-gray-700 text-sm">Birth certificate (original & copy)</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"></i>
+                                    <span class="text-gray-700 text-sm">Two passport-size photos</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"></i>
+                                    <span class="text-gray-700 text-sm">Immunization record</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"></i>
+                                    <span class="text-gray-700 text-sm">Previous school report (if applicable)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Secondary -->
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8 hover-lift">
+                            <div class="text-center mb-6">
+                                <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i data-lucide="book" class="w-8 h-8 text-white"></i>
+                                </div>
+                                <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-2">Secondary</h3>
+                                <p class="text-accent font-medium">Age: 12-16 years</p>
+                            </div>
+                            
+                            <div class="space-y-3">
+                                <h4 class="font-semibold text-gray-900 mb-3">Required Documents:</h4>
+                                <div class="flex items-start space-x-3">
+                                    <i data-lucide="check" class="w-5 h-5 text-accent mt-0.5 flex-shrink-0"></i>
+                                    <span class="text-gray-700 text-sm">Birth certificate (original & copy)</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i data-lucide="check" class="w-5 h-5 text-accent mt-0.5 flex-shrink-0"></i>
+                                    <span class="text-gray-700 text-sm">Passport-size photos</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i data-lucide="check" class="w-5 h-5 text-accent mt-0.5 flex-shrink-0"></i>
+                                    <span class="text-gray-700 text-sm">Last 2 years' academic reports</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i data-lucide="check" class="w-5 h-5 text-accent mt-0.5 flex-shrink-0"></i>
+                                    <span class="text-gray-700 text-sm">Transfer letter (if applicable)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- A-Level -->
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8 hover-lift md:col-span-2 lg:col-span-1">
+                            <div class="text-center mb-6">
+                                <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i data-lucide="graduation-cap" class="w-8 h-8 text-white"></i>
+                                </div>
+                                <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-2">A-Level</h3>
+                                <p class="text-primary font-medium">Age: 17-19 years</p>
+                            </div>
+                            
+                            <div class="space-y-3">
+                                <h4 class="font-semibold text-gray-900 mb-3">Required Documents:</h4>
+                                <div class="flex items-start space-x-3">
+                                    <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"></i>
+                                    <span class="text-gray-700 text-sm">National ID/passport</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"></i>
+                                    <span class="text-gray-700 text-sm">Passport-size photos</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"></i>
+                                    <span class="text-gray-700 text-sm">KCSE certificate or equivalent</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i data-lucide="check" class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"></i>
+                                    <span class="text-gray-700 text-sm">School leaving certificate</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Tuition & Fees -->
+            <section class="py-16 lg:py-24 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="font-playfair text-3xl md:text-4xl font-semibold text-gray-900 tracking-tight mb-6">
+                            Tuition & Fees
+                        </h2>
+                        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                            Our fee structure reflects the value of a Riara education, with flexible payment plans available.
+                        </p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                        <div class="bg-gray-50 p-8 rounded-xl border border-gray-200">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i data-lucide="baby" class="w-8 h-8 text-white"></i>
+                                </div>
+                                <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-2">Early Years & Primary</h3>
+                                <p class="text-gray-600 text-sm mb-4">Ages 3-11 years</p>
+                                <div class="text-2xl font-semibold text-primary mb-2">KES 85,000</div>
+                                <p class="text-gray-600 text-sm">per term</p>
+                                <div class="text-lg font-medium text-gray-700 mt-2">KES 255,000/year</div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-8 rounded-xl border border-gray-200">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i data-lucide="book" class="w-8 h-8 text-white"></i>
+                                </div>
+                                <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-2">Secondary</h3>
+                                <p class="text-gray-600 text-sm mb-4">Ages 12-16 years</p>
+                                <div class="text-2xl font-semibold text-accent mb-2">KES 95,000</div>
+                                <p class="text-gray-600 text-sm">per term</p>
+                                <div class="text-lg font-medium text-gray-700 mt-2">KES 285,000/year</div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-8 rounded-xl border border-gray-200 md:col-span-2 lg:col-span-1">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i data-lucide="graduation-cap" class="w-8 h-8 text-white"></i>
+                                </div>
+                                <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-2">A-Level</h3>
+                                <p class="text-gray-600 text-sm mb-4">Ages 17-19 years</p>
+                                <div class="text-2xl font-semibold text-primary mb-2">KES 105,000</div>
+                                <p class="text-gray-600 text-sm">per term</p>
+                                <div class="text-lg font-medium text-gray-700 mt-2">KES 315,000/year</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-primary to-accent p-8 rounded-xl text-white text-center">
+                        <h3 class="font-playfair text-xl font-semibold mb-4">Flexible Payment Plans Available</h3>
+                        <p class="text-white/90 mb-6">We offer termly, bi-annual, and annual payment options to suit your family's needs. Early payment discounts and scholarship opportunities are available.</p>
+                        <button class="bg-white text-primary px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors">
+                            Learn About Payment Plans
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- What's Included -->
+            <section class="py-16 lg:py-24 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="font-playfair text-3xl md:text-4xl font-semibold text-gray-900 tracking-tight mb-6">
+                            What's Included
+                        </h2>
+                        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                            Your tuition fee covers a comprehensive educational experience designed to nurture your child's growth.
+                        </p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200 hover-lift">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i data-lucide="book-open" class="w-8 h-8 text-white"></i>
+                                </div>
+                                <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-3">Learning Resources</h3>
+                                <p class="text-gray-600 text-sm">Textbooks, workbooks, stationery, and digital learning materials for all subjects.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200 hover-lift">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i data-lucide="trophy" class="w-8 h-8 text-white"></i>
+                                </div>
+                                <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-3">Sports & Extracurriculars</h3>
+                                <p class="text-gray-600 text-sm">Access to all sports facilities, clubs, and extracurricular activities throughout the year.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200 hover-lift">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i data-lucide="laptop" class="w-8 h-8 text-white"></i>
+                                </div>
+                                <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-3">Technology Access</h3>
+                                <p class="text-gray-600 text-sm">Computer labs, tablets, interactive whiteboards, and online learning platforms.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200 hover-lift">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i data-lucide="utensils" class="w-8 h-8 text-white"></i>
+                                </div>
+                                <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-3">Meals</h3>
+                                <p class="text-gray-600 text-sm">Nutritious breakfast and lunch prepared by our qualified catering team daily.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200 hover-lift">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i data-lucide="heart" class="w-8 h-8 text-white"></i>
+                                </div>
+                                <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-3">Health & Wellness</h3>
+                                <p class="text-gray-600 text-sm">School nurse, health screening, counseling services, and wellness programs.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200 hover-lift">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i data-lucide="bus" class="w-8 h-8 text-white"></i>
+                                </div>
+                                <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-3">Transportation</h3>
+                                <p class="text-gray-600 text-sm">Safe and reliable school bus service covering major routes within the city.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- FAQs Section -->
+                <section class="py-16 lg:py-24 bg-gray-50">
+                    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="text-center mb-16">
+                            <h2 class="font-playfair text-3xl md:text-4xl font-semibold text-gray-900 tracking-tight mb-6">
+                                Frequently Asked Questions
+                            </h2>
+                            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                                Get answers to common questions about our admissions process and school policies.
+                            </p>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="bg-white rounded-xl shadow-sm border border-gray-100">
+                                <button class="w-full px-6 py-4 text-left focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 rounded-xl faq-toggle" data-target="faq1">
+                                    <div class="flex items-center justify-between">
+                                        <h3 class="font-semibold text-gray-900">What is the application deadline?</h3>
+                                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 faq-icon"></i>
+                                    </div>
+                                </button>
+                                <div id="faq1" class="faq-content px-6 pb-4">
+                                    <p class="text-gray-600">We accept applications year-round, but we recommend applying early for the best chance of securing a spot. For the academic year beginning in January, we encourage applications by October of the previous year.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-xl shadow-sm border border-gray-100">
+                                <button class="w-full px-6 py-4 text-left focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 rounded-xl faq-toggle" data-target="faq2">
+                                    <div class="flex items-center justify-between">
+                                        <h3 class="font-semibold text-gray-900">Do you offer scholarships or financial aid?</h3>
+                                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 faq-icon"></i>
+                                    </div>
+                                </button>
+                                <div id="faq2" class="faq-content px-6 pb-4">
+                                    <p class="text-gray-600">Yes, we offer need-based financial assistance and merit scholarships for qualifying students. Please contact our admissions office for more information about available opportunities and application procedures.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-xl shadow-sm border border-gray-100">
+                                <button class="w-full px-6 py-4 text-left focus:outline-none focus:ring-2focus:ring-primary focus:ring-opacity-50 rounded-xl faq-toggle" data-target="faq3">
+                                    <div class="flex items-center justify-between">
+                                        <h3 class="font-semibold text-gray-900">Can I schedule a campus tour?</h3>
+                                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 faq-icon"></i>
+                                    </div>
+                                </button>
+                                <div id="faq3" class="faq-content px-6 pb-4">
+                                    <p class="text-gray-600">Absolutely! We encourage prospective families to visit our campus and meet our team. Tours are available Monday through Friday from 9:00 AM to 3:00 PM. Please contact our admissions office to schedule your visit.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-xl shadow-sm border border-gray-100">
+                                <button class="w-full px-6 py-4 text-left focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 rounded-xl faq-toggle" data-target="faq4">
+                                    <div class="flex items-center justify-between">
+                                        <h3 class="font-semibold text-gray-900">What is the student-to-teacher ratio?</h3>
+                                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 faq-icon"></i>
+                                    </div>
+                                </button>
+                                <div id="faq4" class="faq-content px-6 pb-4">
+                                    <p class="text-gray-600">We maintain small class sizes to ensure personalized attention. Our ratio is 15:1 in primary classes and 18:1 in secondary classes, allowing teachers to focus on individual student needs and learning styles.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-xl shadow-sm border border-gray-100">
+                                <button class="w-full px-6 py-4 text-left focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 rounded-xl faq-toggle" data-target="faq5">
+                                    <div class="flex items-center justify-between">
+                                        <h3 class="font-semibold text-gray-900">Do you provide transportation?</h3>
+                                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 faq-icon"></i>
+                                    </div>
+                                </button>
+                                <div id="faq5" class="faq-content px-6 pb-4">
+                                    <p class="text-gray-600">Yes, we offer safe and reliable transportation services to various locations around the city. Our buses are equipped with safety features and driven by trained professionals. Transportation fees are separate from tuition.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-xl shadow-sm border border-gray-100">
+                                <button class="w-full px-6 py-4 text-left focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 rounded-xl faq-toggle" data-target="faq6">
+                                    <div class="flex items-center justify-between">
+                                        <h3 class="font-semibold text-gray-900">What curriculum do you follow?</h3>
+                                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 faq-icon"></i>
+                                    </div>
+                                </button>
+                                <div id="faq6" class="faq-content px-6 pb-4">
+                                    <p class="text-gray-600">We follow the Kenyan national curriculum enhanced with international best practices. Our program includes STEM subjects, humanities, arts, and physical education, ensuring a well-rounded education that prepares students for success.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+          <!-- Application Form       -->
+                <div class="bg-gray-50 rounded-xl p-8 animate-slide-up delay-300">
+                    <h2 class="font-playfair text-3xl font-semibold text-gray-900 text-center mb-8">Application Form</h2>
+                    <form class="max-w-2xl mx-auto space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Student Name</label>
+                                <input type="text" class="form-input" placeholder="Full name">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Date of Birth</label>
+                                <input type="date" class="form-input">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Academic Level</label>
+                            <select class="form-input">
+                                <option value="">Select academic level</option>
+                                <option value="early-years">Early Years</option>
+                                <option value="primary">Primary</option>
+                                <option value="secondary">Secondary</option>
+                                <option value="a-level">A-Level</option>
+                            </select>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Parent/Guardian Name</label>
+                                <input type="text" class="form-input" placeholder="Full name">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Contact Number</label>
+                                <input type="tel" class="form-input" placeholder="Phone number">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                            <input type="email" class="form-input" placeholder="Email address">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Previous School</label>
+                            <input type="text" class="form-input" placeholder="Previous school (if applicable)">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Additional Information</label>
+                            <textarea class="form-input" rows="4" placeholder="Any additional information or special requirements"></textarea>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button type="submit" class="btn-primary px-8 py-3">
+                                Submit Application
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- GALLERY PAGE -->
+    <div id="gallery" class="page">
+        <section>
+            <div>
+                <!-- Hero Section -->
+                <section class="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
+                    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+                    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')"></div>
+                    
+                    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+                        <div class="text-center">
+                            <h1 class="font-playfair text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight tracking-tight mb-6">
+                                Life at Riara in Pictures
+                            </h1>
+                            <p class="text-xl text-gray-200 leading-relaxed max-w-3xl mx-auto mb-8">
+                                Discover the vibrant moments, achievements, and daily life of our school community through our visual story collection.
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                                <button class="bg-primary text-white px-8 py-3 rounded-lg font-medium hover:bg-opacity-90 transition-colors btn-hover">
+                                    <i data-lucide="camera" class="w-5 h-5 inline mr-2"></i>
+                                    Browse Photos
+                                </button>
+                                <button class="bg-accent text-white px-8 py-3 rounded-lg font-medium hover:bg-opacity-90 transition-colors btn-hover">
+                                    <i data-lucide="video" class="w-5 h-5 inline mr-2"></i>
+                                    Watch Videos
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- Filter Section -->
+                <section class="py-8 bg-white border-b border-gray-200">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+                            <!-- Filter Tabs -->
+                            <div class="flex flex-wrap justify-center gap-2">
+                                <button class="filter-btn active px-6 py-3 rounded-full border-2 border-primary text-primary font-medium hover:bg-primary hover:text-white transition-colors btn-hover" data-filter="all">
+                                    <i data-lucide="grid" class="w-4 h-4 inline mr-2"></i>
+                                    All Media
+                                </button>
+                                <button class="filter-btn px-6 py-3 rounded-full border-2 border-primary text-primary font-medium hover:bg-primary hover:text-white transition-colors btn-hover" data-filter="photo">
+                                    <i data-lucide="camera" class="w-4 h-4 inline mr-2"></i>
+                                    Photos
+                                </button>
+                                <button class="filter-btn px-6 py-3 rounded-full border-2 border-primary text-primary font-medium hover:bg-primary hover:text-white transition-colors btn-hover" data-filter="video">
+                                    <i data-lucide="video" class="w-4 h-4 inline mr-2"></i>
+                                    Videos
+                                </button>
+                            </div>
+                            
+                            <!-- Submit Media Button -->
+                            <!-- <button class="bg-accent text-white px-6 py-3 rounded-lg font-medium hover:bg-opacity-90 transition-colors btn-hover">
+                                <i data-lucide="upload" class="w-4 h-4 inline mr-2"></i>
+                                Submit Media
+                            </button> -->
+                        </div>
+                    </div>
+                </section>
+
+                
+                
+                <div class="max-w-7xl mx-auto px-4 py-16">
+                     <div class="gallery-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="gallery-item animate-slide-up delay-100" onclick="openModal('https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80')">
+                        <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="School Building" class="w-full h-64 object-cover rounded-lg shadow-lg">
+                        <div class="mt-4">
+                            <h3 class="font-playfair text-lg font-semibold text-gray-900">School Building</h3>
+                            <p class="text-gray-600">Our modern facilities provide an excellent learning environment</p>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item animate-slide-up delay-200" onclick="openModal('https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80')">
+                        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Students Learning" class="w-full h-64 object-cover rounded-lg shadow-lg">
+                        <div class="mt-4">
+                            <h3 class="font-playfair text-lg font-semibold text-gray-900">Classroom Learning</h3>
+                            <p class="text-gray-600">Interactive learning sessions with dedicated teachers</p>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item animate-slide-up delay-300" onclick="openModal('https://images.unsplash.com/photo-1596464716127-f2a82984de30?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80')">
+                        <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Early Years" class="w-full h-64 object-cover rounded-lg shadow-lg">
+                        <div class="mt-4">
+                            <h3 class="font-playfair text-lg font-semibold text-gray-900">Early Years Program</h3>
+                            <p class="text-gray-600">Nurturing young minds through play-based learning</p>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item animate-slide-up delay-400" onclick="openModal('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80')">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Science Lab" class="w-full h-64 object-cover rounded-lg shadow-lg">
+                        <div class="mt-4">
+                            <h3 class="font-playfair text-lg font-semibold text-gray-900">Science Laboratory</h3>
+                            <p class="text-gray-600">Well-equipped labs for hands-on scientific exploration</p>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item animate-slide-up delay-500" onclick="openModal('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80')">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Library" class="w-full h-64 object-cover rounded-lg shadow-lg">
+                        <div class="mt-4">
+                            <h3 class="font-playfair text-lg font-semibold text-gray-900">Library</h3>
+                            <p class="text-gray-600">Extensive collection of books and digital resources</p>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item animate-slide-up delay-600" onclick="openModal('https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80')">
+                        <img src="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Sports Field" class="w-full h-64 object-cover rounded-lg shadow-lg">
+                        <div class="mt-4">
+                            <h3 class="font-playfair text-lg font-semibold text-gray-900">Sports Activities</h3>
+                            <p class="text-gray-600">Promoting physical fitness and teamwork through sports</p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div id="contact" class="page">
+        <section>
+
+   <!-- Hero Section -->
+    <section class="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden hero-pattern">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="absolute inset-0 bg-cover bg-center opacity-30" style="background-image: url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')"></div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+            <div class="text-center">
+                <h1 class="font-playfair text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight tracking-tight mb-6">
+                    Let's Connect
+                </h1>
+                <p class="text-xl text-gray-200 leading-relaxed max-w-3xl mx-auto mb-8">
+                    We're here to answer your questions and help you discover everything Riara School has to offer. Get in touch with us today.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="bg-primary text-white px-8 py-3 rounded-lg font-medium hover:bg-opacity-90 transition-colors btn-hover" onclick="scrollToForm()">
+                        <i data-lucide="message-circle" class="w-5 h-5 inline mr-2"></i>
+                        Send Message
+                    </button>
+                    <button class="bg-accent text-white px-8 py-3 rounded-lg font-medium hover:bg-opacity-90 transition-colors btn-hover" onclick="scrollToLocation()">
+                        <i data-lucide="map-pin" class="w-5 h-5 inline mr-2"></i>
+                        Visit Us
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information Cards -->
+    <section class="py-16 lg:py-24 bg-white section-reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Address Card -->
+                <div class="contact-card p-8 rounded-2xl text-center">
+                    <div class="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="map-pin" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="font-playfair font-semibold text-xl mb-4">Visit Our Campus</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        123 Education Lane<br>
+                        Nairobi, Kenya<br>
+                        P.O. Box 1234-00100
+                    </p>
+                    <button class="mt-6 text-primary font-medium hover:text-accent transition-colors" onclick="scrollToLocation()">
+                        <i data-lucide="external-link" class="w-4 h-4 inline mr-2"></i>
+                        Get Directions
+                    </button>
+                </div>
+
+                <!-- Phone Card -->
+                <div class="contact-card p-8 rounded-2xl text-center">
+                    <div class="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="phone" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="font-playfair font-semibold text-xl mb-4">Call Us</h3>
+                    <p class="text-gray-600 leading-relaxed mb-2">
+                        Main Office: <a href="tel:+254123456789" class="text-primary hover:text-accent transition-colors">+254 123 456 789</a>
+                    </p>
+                    <p class="text-gray-600 leading-relaxed">
+                        Admissions: <a href="tel:+254123456790" class="text-primary hover:text-accent transition-colors">+254 123 456 790</a>
+                    </p>
+                    <p class="text-sm text-gray-500 mt-4">
+                        Mon - Fri: 8:00 AM - 5:00 PM<br>
+                        Sat: 9:00 AM - 1:00 PM
+                    </p>
+                </div>
+
+                <!-- Email Card -->
+                <div class="contact-card p-8 rounded-2xl text-center">
+                    <div class="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="mail" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="font-playfair font-semibold text-xl mb-4">Email Us</h3>
+                    <p class="text-gray-600 leading-relaxed mb-2">
+                        General: <a href="mailto:info@riaraschool.ac.ke" class="text-primary hover:text-accent transition-colors">info@riaraschool.ac.ke</a>
+                    </p>
+                    <p class="text-gray-600 leading-relaxed">
+                        Admissions: <a href="mailto:admissions@riaraschool.ac.ke" class="text-primary hover:text-accent transition-colors">admissions@riaraschool.ac.ke</a>
+                    </p>
+                    <p class="text-sm text-gray-500 mt-4">
+                        We'll respond within 24 hours<br>
+                        during business days
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form and Map Section -->
+    <section class="py-16 lg:py-24 bg-cream section-reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
+                        <!-- Contact Form -->
+                        <div id="contactForm">
+                            <div class="bg-white p-8 lg:p-10 rounded-2xl shadow-lg">
+                                <h2 class="font-playfair font-semibold text-2xl lg:text-3xl mb-2">Send Us a Message</h2>
+                                <p class="text-gray-600 mb-8">Fill out the form below and we'll get back to you as soon as possible.</p>
+                                
+                                <div id="successMessage" class="success-message">
+                                    <div class="flex items-center">
+                                        <i data-lucide="check-circle" class="w-5 h-5 mr-2"></i>
+                                        <span>Thank you! Your message has been sent successfully.</span>
+                                    </div>
+                                </div>
+
+                                <form id="contactFormElement" class="space-y-6">
+                                    <div class="grid md:grid-cols-2 gap-6">
+                                        <div class="form-group">
+                                            <input type="text" id="firstName" name="firstName" placeholder=" " class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" required>
+                                            <label for="firstName" class="floating-label">First Name</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" id="lastName" name="lastName" placeholder=" " class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" required>
+                                            <label for="lastName" class="floating-label">Last Name</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <input type="email" id="email" name="email" placeholder=" " class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" required>
+                                        <label for="email" class="floating-label">Email Address</label>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <input type="tel" id="phone" name="phone" placeholder=" " class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                                        <label for="phone" class="floating-label">Phone Number (Optional)</label>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <select id="subject" name="subject" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none bg-white" required>
+                                            <option value="">Select a subject</option>
+                                            <option value="admissions">Admissions Inquiry</option>
+                                            <option value="academics">Academic Programs</option>
+                                            <option value="student-life">Student Life</option>
+                                            <option value="fees">Fees & Payment</option>
+                                            <option value="events">Events & News</option>
+                                            <option value="general">General Inquiry</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <textarea id="message" name="message" rows="5" placeholder=" " class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none resize-none" required></textarea>
+                                        <label for="message" class="floating-label">Your Message</label>
+                                    </div>
+                                    
+                                    <div class="flex items-start space-x-3">
+                                        <input type="checkbox" id="newsletter" name="newsletter" class="mt-1 rounded border-gray-300 text-primary focus:ring-primary focus:ring-2">
+                                        <label for="newsletter" class="text-sm text-gray-600">I would like to receive updates and newsletters from Riara School</label>
+                                    </div>
+                                    
+                                    <button type="submit" class="w-full bg-primary text-white py-4 rounded-lg font-medium hover:bg-opacity-90 transition-colors btn-hover">
+                                        <i data-lucide="send" class="w-5 h-5 inline mr-2"></i>
+                                        Send Message
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Map -->
+                        <div id="mapSection">
+                            <div class="bg-white p-8 lg:p-10 rounded-2xl shadow-lg">
+                                <h2 class="font-playfair font-semibold text-2xl lg:text-3xl mb-2">Find Us</h2>
+                                <p class="text-gray-600 mb-8">Located in the heart of Nairobi, our campus is easily accessible by public transport and private vehicles.</p>
+                                
+                                <div class="map-container mb-6">
+                                    <iframe
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8194470463973!2d36.8219462!3d-1.2920659!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1172d84d49a7%3A0xf7cf0254b297924c!2sNairobi%2C%20Kenya!5e0!3m2!1sen!2sus!4v1645564756789!5m2!1sen!2sus"
+                                        width="100%"
+                                        height="300"
+                                        style="border:0;"
+                                        allowfullscreen=""
+                                        loading="lazy"
+                                        referrerpolicy="no-referrer-when-downgrade"
+                                        class="rounded-lg">
+                                    </iframe>
+                                </div>
+                                
+                                <div class="space-y-4">
+                                    <div class="flex items-start space-x-3">
+                                        <i data-lucide="car" class="w-5 h-5 text-primary mt-1"></i>
+                                        <div>
+                                            <h4 class="font-medium text-gray-900">By Car</h4>
+                                            <p class="text-sm text-gray-600">Free parking available on campus</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-start space-x-3">
+                                        <i data-lucide="bus" class="w-5 h-5 text-primary mt-1"></i>
+                                        <div>
+                                            <h4 class="font-medium text-gray-900">Public Transport</h4>
+                                            <p class="text-sm text-gray-600">Multiple bus routes stop nearby</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-start space-x-3">
+                                        <i data-lucide="clock" class="w-5 h-5 text-primary mt-1"></i>
+                                        <div>
+                                            <h4 class="font-medium text-gray-900">Visiting Hours</h4>
+                                            <p class="text-sm text-gray-600">Mon-Fri: 8:00 AM - 5:00 PM<br>Sat: 9:00 AM - 1:00 PM</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                            <span class="text-white font-playfair font-semibold">R</span>
+                        </div>
+                        <span class="font-playfair font-semibold text-lg">Riara School</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        Excellence in education, nurturing future leaders through holistic development and academic excellence.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" onclick="showPage('about')" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" onclick="showPage('academics')" class="hover:text-white transition-colors">Academics</a></li>
+                        <li><a href="#" onclick="showPage('admissions')" class="hover:text-white transition-colors">Admissions</a></li>
+                        <li><a href="#" onclick="showPage('contact')" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">Programs</h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Early Years</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Primary</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Secondary</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">A-Levels</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">Contact Info</h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li>123 Education Avenue, Nairobi</li>
+                        <li>+254 700 123 456</li>
+                        <li>info@riaraschool.ac.ke</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
+                <p>© 2024 Riara School. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Menu functionality
+        const menuToggle = document.getElementById('menuToggle');
+        const menuClose = document.getElementById('menuClose');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const menuPanel = document.getElementById('menuPanel');
+        
+        menuToggle.addEventListener('click', () => {
+            menuOverlay.classList.add('active');
+            menuPanel.classList.add('active');
+        });
+        
+        menuClose.addEventListener('click', () => {
+            menuOverlay.classList.remove('active');
+            menuPanel.classList.remove('active');
+        });
+        
+        menuOverlay.addEventListener('click', (e) => {
+            if (e.target === menuOverlay) {
+                menuOverlay.classList.remove('active');
+                menuPanel.classList.remove('active');
+            }
+        });
+
+           // FAQ functionality
+        document.querySelectorAll('.faq-toggle').forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                const target = document.getElementById(this.dataset.target);
+                const icon = this.querySelector('.faq-icon');
+                
+                // Close all other FAQs
+                document.querySelectorAll('.faq-content').forEach(content => {
+                    if (content !== target) {
+                        content.classList.remove('active');
+                    }
+                });
+                
+                document.querySelectorAll('.faq-icon').forEach(otherIcon => {
+                    if (otherIcon !== icon) {
+                        otherIcon.classList.remove('rotate');
+                    }
+                });
+                
+                // Toggle current FAQ
+                target.classList.toggle('active');
+                icon.classList.toggle('rotate');
+            });
+        });
+        
+        // Page navigation
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            
+            // Close menu if open
+            menuOverlay.classList.remove('active');
+            menuPanel.classList.remove('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Gallery modal
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = imageSrc;
+            modal.classList.add('active');
+        }
+        
+        function closeModal() {
+            document.getElementById('imageModal').classList.remove('active');
+        }
+        
+
+        
+        // Chart initialization
+        window.addEventListener('load', () => {
+            const ctx = document.getElementById('performanceChart');
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['2020', '2021', '2022', '2023'],
+                        datasets: [{
+                            label: 'KCSE Pass Rate (%)',
+                            data: [90, 92, 94, 95],
+                            backgroundColor: '#B5935A'
+                        }, {
+                            label: 'A-Level Pass Rate (%)',
+                            data: [85, 86, 87, 87],
+                            backgroundColor: '#6A2E91'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+
+        <script>
+      
+        // Gallery filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const mediaItems = document.querySelectorAll('.media-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.dataset.filter;
+                
+                // Update active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Filter items
+                mediaItems.forEach(item => {
+                    const type = item.dataset.type;
+                    if (filter === 'all' || type === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxMedia = document.getElementById('lightboxMedia');
+        const lightboxTitle = document.getElementById('lightboxTitle');
+        let currentIndex = 0;
+        let visibleItems = [];
+
+        function updateVisibleItems() {
+            visibleItems = Array.from(mediaItems).filter(item => 
+                item.style.display !== 'none'
+            );
+        }
+
+        function openLightbox(index) {
+            updateVisibleItems();
+            currentIndex = index;
+            const item = visibleItems[currentIndex];
+            const type = item.dataset.type;
+            const src = item.dataset.src;
+            const title = item.dataset.title;
+
+            lightboxTitle.textContent = title;
+
+            if (type === 'photo') {
+                lightboxMedia.innerHTML = `<img src="${src}" alt="${title}" class="max-w-full max-h-full">`;
+            } else {
+                lightboxMedia.innerHTML = `<video controls class="max-w-full max-h-full">
+                    <source src="${src}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>`;
+            }
+
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function prevImage() {
+            if (currentIndex > 0) {
+                openLightbox(currentIndex - 1);
+            }
+        }
+
+        function nextImage() {
+            if (currentIndex < visibleItems.length - 1) {
+                openLightbox(currentIndex + 1);
+            }
+        }
+
+        // Add click event to gallery items
+        mediaItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                updateVisibleItems();
+                const visibleIndex = visibleItems.indexOf(item);
+                if (visibleIndex !== -1) {
+                    openLightbox(visibleIndex);
+                }
+            });
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                } else if (e.key === 'ArrowLeft') {
+                    prevImage();
+                } else if (e.key === 'ArrowRight') {
+                    nextImage();
+                }
+            }
+        });
+
+        // Close lightbox when clicking outside
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        // Scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-reveal').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Initialize first load
+        updateVisibleItems();
+    </script>
+
+</body></html>
