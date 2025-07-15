@@ -111,6 +111,47 @@
             border-color: #B5935A; 
             box-shadow: 0 0 0 3px rgba(181, 147, 90, 0.1); 
         }
+
+        .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 1px;
+        background-color: #e5e7eb;
+        border: 1px solid #e5e7eb;
+        }
+        .calendar-day {
+        background-color: white;
+        min-height: 100px;
+        padding: 8px;
+        position: relative;
+        }
+        .calendar-day.other-month {
+        background-color: #f9fafb;
+        color: #9ca3af;
+        }
+        .calendar-day.today {
+        background-color: #fef3c7;
+        border: 2px solid #B5935A;
+        }
+        .calendar-event {
+        background-color: #B5935A;
+        color: white;
+        font-size: 0.75rem;
+        padding: 2px 4px;
+        border-radius: 4px;
+        margin-top: 4px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        }
+        .calendar-event:hover {
+        background-color: #6A2E91;
+        }
+        .calendar-event.accent {
+        background-color: #6A2E91;
+        }
+        .calendar-event.accent:hover {
+        background-color: #B5935A;
+        }
         
         .animate-fade-in { animation: fadeIn 0.8s ease-out forwards; }
         .animate-slide-up { animation: slideUp 0.8s ease-out forwards; }
@@ -220,12 +261,12 @@
                     </a>
                     
                     <a href="#" class="flex items-center space-x-3 py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" onclick="showPage('contact')">
-                        <i data-lucide="phone" class="w-5 h-5"></i>
+                        <!-- <i data-lucide="phone" class="w-5 h-5"></i> -->
                         <span class="font-medium">404 Page</span>
                     </a>
 
-                                        <a href="#" class="flex items-center space-x-3 py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" onclick="showPage('contact')">
-                        <i data-lucide="phone" class="w-5 h-5"></i>
+                                        <a href="#" class="flex items-center space-x-3 py-3 px-4 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors" onclick="showPage('policy')">
+                        <!-- <i data-lucide="phone" class="w-5 h-5"></i> -->
                         <span class="font-medium">Privacy Policy</span>
                     </a>
 
@@ -246,6 +287,7 @@
         </div>
         <button class="absolute top-4 right-4 text-white text-2xl hover:text-gray-300 transition-colors" onclick="closeModal()">×</button>
     </div>
+
 
     <!-- HOME PAGE -->
     <div id="home" class="page active">
@@ -705,6 +747,504 @@
         </section>
     </div>
 
+
+    <!-- NEWS PAGE -->
+    <div id="news" class="page">
+        <section>
+            <div>
+                <section class="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
+                        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+                        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')"></div>
+                        
+                        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+                            <div class="text-center">
+                                <h1 class="font-playfair text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight tracking-tight animate-slide-up">
+                                    What's Happening at Riara
+                                </h1>
+                                <p class="mt-6 text-xl text-gray-200 leading-relaxed max-w-3xl mx-auto animate-slide-up delay-200">
+                                    Stay connected with the latest news, upcoming events, and exciting announcements from our vibrant school community.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Filter Section -->
+                    <section class="py-8 bg-white border-b border-gray-200">
+                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div class="flex flex-wrap justify-center gap-4">
+                                <button class="filter-btn active px-6 py-3 rounded-full border-2 border-primary text-primary font-medium hover:bg-primary hover:text-white transition-colors btn-hover" data-filter="all">
+                                    All
+                                </button>
+                                <button class="filter-btn px-6 py-3 rounded-full border-2 border-primary text-primary font-medium hover:bg-primary hover:text-white transition-colors btn-hover" data-filter="news">
+                                    News
+                                </button>
+                                <button class="filter-btn px-6 py-3 rounded-full border-2 border-primary text-primary font-medium hover:bg-primary hover:text-white transition-colors btn-hover" data-filter="events">
+                                    Events
+                                </button>
+                                <button class="filter-btn px-6 py-3 rounded-full border-2 border-primary text-primary font-medium hover:bg-primary hover:text-white transition-colors btn-hover" data-filter="announcements">
+                                    Announcements
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    <!-- Calendar Grid -->
+                    <div class="calendar-grid mb-8">
+                        <div class="calendar-day other-month">
+                            <div class="text-sm">25</div>
+                        </div>
+                        <div class="calendar-day other-month">
+                            <div class="text-sm">26</div>
+                        </div>
+                        <div class="calendar-day other-month">
+                            <div class="text-sm">27</div>
+                        </div>
+                        <div class="calendar-day other-month">
+                            <div class="text-sm">28</div>
+                        </div>
+                        <div class="calendar-day other-month">
+                            <div class="text-sm">29</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">1</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">2</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">3</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">4</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">5</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">6</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">7</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">8</div>
+                            <div class="calendar-event">Science Fair</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">9</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">10</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">11</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">12</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">13</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">14</div>
+                        </div>
+                        <div class="calendar-day today">
+                            <div class="text-sm font-medium">15</div>
+                            <div class="calendar-event accent">Parent Meeting</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">16</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">17</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">18</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">19</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">20</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">21</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">22</div>
+                            <div class="calendar-event">Sports Day</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">23</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">24</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">25</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">26</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">27</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">28</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">29</div>
+                            <div class="calendar-event accent">Drama Night</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">30</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="text-sm font-medium">31</div>
+                        </div>
+                    </div>
+
+                    <!-- Event Cards -->
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 card-hover filter-item" data-category="events">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                                        <i data-lucide="flask" class="w-5 h-5 text-white"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-900">Science Fair</h3>
+                                        <p class="text-sm text-gray-600">March 8, 2024</p>
+                                    </div>
+                                </div>
+                                <span class="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">Event</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                Join us for our annual science fair where students showcase their innovative projects and experiments.
+                            </p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-2 text-sm text-gray-500">
+                                    <i data-lucide="clock" class="w-4 h-4"></i>
+                                    <span>9:00 AM - 4:00 PM</span>
+                                </div>
+                                <button class="text-primary hover:text-accent transition-colors font-medium">
+                                    Learn More
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 card-hover filter-item" data-category="events">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-accent rounded-full flex items-center justify-center">
+                                        <i data-lucide="users" class="w-5 h-5 text-white"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-900">Parent-Teacher Meeting</h3>
+                                        <p class="text-sm text-gray-600">March 15, 2024</p>
+                                    </div>
+                                </div>
+                                <span class="px-3 py-1 bg-accent/10 text-accent text-xs font-medium rounded-full">Event</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                An opportunity for parents to meet with teachers and discuss student progress and development.
+                            </p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-2 text-sm text-gray-500">
+                                    <i data-lucide="clock" class="w-4 h-4"></i>
+                                    <span>2:00 PM - 6:00 PM</span>
+                                </div>
+                                <button class="text-primary hover:text-accent transition-colors font-medium">
+                                    Learn More
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 card-hover filter-item" data-category="events">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                                        <i data-lucide="trophy" class="w-5 h-5 text-white"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-900">Annual Sports Day</h3>
+                                        <p class="text-sm text-gray-600">March 22, 2024</p>
+                                    </div>
+                                </div>
+                                <span class="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">Event</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                A day filled with athletic competitions, team spirit, and celebration of physical fitness.
+                            </p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-2 text-sm text-gray-500">
+                                    <i data-lucide="clock" class="w-4 h-4"></i>
+                                    <span>8:00 AM - 5:00 PM</span>
+                                </div>
+                                <button class="text-primary hover:text-accent transition-colors font-medium">
+                                    Learn More
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+                
+
+            <!-- Latest News Section -->
+            <section class="py-16 lg:py-24 bg-gray-50 section-reveal">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-12">
+                        <h2 class="font-playfair text-3xl md:text-4xl font-semibold text-gray-900 tracking-tight mb-4">
+                            Latest News
+                        </h2>
+                        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                            Stay updated with the latest developments and achievements from our school community.
+                        </p>
+                    </div>
+
+                    <div class="grid lg:grid-cols-3 gap-8">
+                        <!-- Featured Article -->
+                        <div class="lg:col-span-2">
+                            <article class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover filter-item" data-category="news">
+                                <div class="relative">
+                                    <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Academic Excellence" class="w-full h-64 object-cover">
+                                    <div class="absolute top-4 left-4">
+                                        <span class="px-3 py-1 bg-primary text-white text-sm font-medium rounded-full">News</span>
+                                    </div>
+                                </div>
+                                <div class="p-8">
+                                    <div class="flex items-center space-x-4 mb-4">
+                                        <div class="flex items-center space-x-2 text-gray-500">
+                                            <i data-lucide="calendar" class="w-4 h-4"></i>
+                                            <span class="text-sm">March 10, 2024</span>
+                                        </div>
+                                        <div class="flex items-center space-x-2 text-gray-500">
+                                            <i data-lucide="user" class="w-4 h-4"></i>
+                                            <span class="text-sm">By Admin</span>
+                                        </div>
+                                    </div>
+                                    <h2 class="font-playfair text-2xl font-semibold text-gray-900 mb-4">
+                                        Riara School Achieves Outstanding KCSE Results
+                                    </h2>
+                                    <p class="text-gray-600 mb-6 leading-relaxed">
+                                        We are thrilled to announce that our Class of 2023 has achieved exceptional results in the Kenya Certificate of Secondary Education (KCSE) examinations. With a mean grade of A-, our students have once again demonstrated their academic excellence and dedication to learning.
+                                    </p>
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center space-x-4">
+                                            <div class="flex items-center space-x-1">
+                                                <i data-lucide="heart" class="w-4 h-4 text-gray-400"></i>
+                                                <span class="text-sm text-gray-500">24 likes</span>
+                                            </div>
+                                            <div class="flex items-center space-x-1">
+                                                <i data-lucide="message-circle" class="w-4 h-4 text-gray-400"></i>
+                                                <span class="text-sm text-gray-500">8 comments</span>
+                                            </div>
+                                        </div>
+                                        <button class="text-primary hover:text-accent transition-colors font-medium">
+                                            Read More →
+                                        </button>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+
+                        <!-- Sidebar Articles -->
+                        <div class="space-y-6">
+                            <article class="bg-white rounded-xl shadow-lg overflow-hidden card-hover filter-item" data-category="announcements">
+                                <div class="relative">
+                                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="New Laboratory" class="w-full h-32 object-cover">
+                                    <div class="absolute top-2 left-2">
+                                        <span class="px-2 py-1 bg-accent text-white text-xs font-medium rounded-full">Announcement</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex items-center space-x-2 mb-3">
+                                        <i data-lucide="calendar" class="w-4 h-4 text-gray-400"></i>
+                                        <span class="text-sm text-gray-500">March 8, 2024</span>
+                                    </div>
+                                    <h3 class="font-playfair text-lg font-semibold text-gray-900 mb-3">
+                                        New Science Laboratory Opens
+                                    </h3>
+                                    <p class="text-gray-600 text-sm mb-4">
+                                        Our state-of-the-art science laboratory is now open, providing students with modern equipment and facilities for hands-on learning.
+                                    </p>
+                                    <button class="text-primary hover:text-accent transition-colors font-medium text-sm">
+                                        Read More →
+                                    </button>
+                                </div>
+                            </article>
+
+                            <article class="bg-white rounded-xl shadow-lg overflow-hidden card-hover filter-item" data-category="news">
+                                <div class="relative">
+                                    <img src="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Student Achievement" class="w-full h-32 object-cover">
+                                    <div class="absolute top-2 left-2">
+                                        <span class="px-2 py-1 bg-primary text-white text-xs font-medium rounded-full">News</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex items-center space-x-2 mb-3">
+                                        <i data-lucide="calendar" class="w-4 h-4 text-gray-400"></i>
+                                        <span class="text-sm text-gray-500">March 5, 2024</span>
+                                    </div>
+                                    <h3 class="font-playfair text-lg font-semibold text-gray-900 mb-3">
+                                        Student Wins National Math Competition
+                                    </h3>
+                                    <p class="text-gray-600 text-sm mb-4">
+                                        Congratulations to Sarah Kimani from Form 4 Blue who won first place in the National Mathematics Competition.
+                                    </p>
+                                    <button class="text-primary hover:text-accent transition-colors font-medium text-sm">
+                                        Read More →
+                                    </button>
+                                </div>
+                            </article>
+
+                            <article class="bg-white rounded-xl shadow-lg overflow-hidden card-hover filter-item" data-category="announcements">
+                                <div class="relative">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Library Announcement" class="w-full h-32 object-cover">
+                                    <div class="absolute top-2 left-2">
+                                        <span class="px-2 py-1 bg-accent text-white text-xs font-medium rounded-full">Announcement</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex items-center space-x-2 mb-3">
+                                        <i data-lucide="calendar" class="w-4 h-4 text-gray-400"></i>
+                                        <span class="text-sm text-gray-500">March 3, 2024</span>
+                                    </div>
+                                    <h3 class="font-playfair text-lg font-semibold text-gray-900 mb-3">
+                                        Extended Library Hours
+                                    </h3>
+                                    <p class="text-gray-600 text-sm mb-4">
+                                        Starting next week, our library will be open until 7:00 PM on weekdays to better serve our students.
+                                    </p>
+                                    <button class="text-primary hover:text-accent transition-colors font-medium text-sm">
+                                        Read More →
+                                    </button>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- More News Grid -->
+            <section class="py-16 lg:py-24 bg-white section-reveal">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <article class="bg-white rounded-xl shadow-lg overflow-hidden card-hover filter-item" data-category="news">
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cultural Day" class="w-full h-48 object-cover">
+                                <div class="absolute top-4 left-4">
+                                    <span class="px-3 py-1 bg-primary text-white text-sm font-medium rounded-full">News</span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center space-x-2 mb-3">
+                                    <i data-lucide="calendar" class="w-4 h-4 text-gray-400"></i>
+                                    <span class="text-sm text-gray-500">March 1, 2024</span>
+                                </div>
+                                <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-3">
+                                    Cultural Day Celebrates Diversity
+                                </h3>
+                                <p class="text-gray-600 mb-4">
+                                    Our annual Cultural Day was a vibrant celebration of the diverse backgrounds and traditions represented in our school community.
+                                </p>
+                                <button class="text-primary hover:text-accent transition-colors font-medium">
+                                    Read More →
+                                </button>
+                            </div>
+                        </article>
+
+                        <article class="bg-white rounded-xl shadow-lg overflow-hidden card-hover filter-item" data-category="events">
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Career Fair" class="w-full h-48 object-cover">
+                                <div class="absolute top-4 left-4">
+                                    <span class="px-3 py-1 bg-accent text-white text-sm font-medium rounded-full">Event</span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center space-x-2 mb-3">
+                                    <i data-lucide="calendar" class="w-4 h-4 text-gray-400"></i>
+                                    <span class="text-sm text-gray-500">April 5, 2024</span>
+                                </div>
+                                <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-3">
+                                    Career Fair - Explore Your Future
+                                </h3>
+                                <p class="text-gray-600 mb-4">
+                                    Join us for our annual career fair where students can explore different career paths and meet industry professionals.
+                                </p>
+                                <button class="text-primary hover:text-accent transition-colors font-medium">
+                                    Learn More →
+                                </button>
+                            </div>
+                        </article>
+
+                        <article class="bg-white rounded-xl shadow-lg overflow-hidden card-hover filter-item" data-category="announcements">
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1606761568499-6d2451b23c66?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="New Scholarship" class="w-full h-48 object-cover">
+                                <div class="absolute top-4 left-4">
+                                    <span class="px-3 py-1 bg-accent text-white text-sm font-medium rounded-full">Announcement</span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center space-x-2 mb-3">
+                                    <i data-lucide="calendar" class="w-4 h-4 text-gray-400"></i>
+                                    <span class="text-sm text-gray-500">February 28, 2024</span>
+                                </div>
+                                <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-3">
+                                    New Scholarship Program Launched
+                                </h3>
+                                <p class="text-gray-600 mb-4">
+                                    We're excited to announce our new merit-based scholarship program designed to support exceptional students in their academic journey.
+                                </p>
+                                <button class="text-primary hover:text-accent transition-colors font-medium">
+                                    Read More →
+                                </button>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Load More Button -->
+                    <div class="text-center mt-12">
+                        <button class="bg-primary text-white px-8 py-3 rounded-lg font-medium hover:bg-opacity-90 transition-colors btn-hover">
+                            Load More Articles
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Newsletter Section -->
+            <section class="py-16 lg:py-24 bg-gradient-to-br from-primary to-accent text-white section-reveal">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center">
+                        <h2 class="font-playfair text-3xl md:text-4xl font-semibold mb-4">
+                            Stay Connected
+                        </h2>
+                        <p class="text-xl mb-8 max-w-2xl mx-auto">
+                            Subscribe to our newsletter and never miss important updates, events, and achievements from Riara School.
+                        </p>
+                        
+                        <div class="max-w-md mx-auto">
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <input type="email" placeholder="Enter your email address" class="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white">
+                                <button class="bg-white text-primary px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors btn-hover">
+                                    Subscribe
+                                </button>
+                            </div>
+                            <p class="text-sm mt-4 opacity-90">
+                                By subscribing, you agree to receive emails from Riara School. You can unsubscribe at any time.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            </div>
+        </section>
+    </div>
 
     <!-- ACADEMICS PAGE -->
     <div id="academics" class="page">
@@ -1529,96 +2069,542 @@
         </section>
     </div>
 
+
+        <!-- Policy PAGE -->
+    <div id="policy" class="page">
+        <section>
+            <!-- Hero Section -->
+            <section class="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden hero-pattern">
+                <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+                <div class="absolute inset-0 bg-cover bg-center opacity-30" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')"></div>
+                
+                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+                    <div class="text-center">
+                        <h1 class="font-playfair text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight tracking-tight mb-6">
+                            Privacy Policy
+                        </h1>
+                        <p class="text-xl text-gray-200 leading-relaxed max-w-3xl mx-auto">
+                            Your privacy is important to us. Learn how we protect and handle your personal information.
+                        </p>
+                        <div class="mt-8 flex justify-center">
+                            <span class="updated-badge">
+                                <i data-lucide="shield-check" class="w-4 h-4 mr-2"></i>
+                                Last Updated: December 2024
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Main Content -->
+            <section class="py-16 lg:py-24 bg-white">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    <!-- Introduction -->
+                    <div class="section-reveal mb-12">
+                        <div class="prose prose-lg max-w-none">
+                            <p class="text-xl text-gray-600 leading-relaxed mb-8">
+                                At Riara School, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, share, and protect information about students, parents, staff, and visitors when you interact with our school, use our website, or engage with our services.
+                            </p>
+                            
+                            <div class="important-note">
+                                <div class="flex items-start space-x-3">
+                                    <i data-lucide="info" class="w-5 h-5 text-blue-600 mt-1"></i>
+                                    <div>
+                                        <h3 class="font-semibold text-gray-900 mb-2">Important Notice</h3>
+                                        <p class="text-gray-700">
+                                            This policy applies to all personal data processed by Riara School, including data collected through our website, mobile applications, and during your interactions with our school community.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Table of Contents -->
+                    <div class="section-reveal mb-12">
+                        <div class="table-of-contents">
+                            <h3 class="font-playfair font-semibold text-lg mb-4 text-gray-900">Table of Contents</h3>
+                            <ul class="space-y-2">
+                                <li><a href="#information-collect" class="flex items-center hover:underline">
+                                    <i data-lucide="database" class="w-4 h-4 mr-2"></i>
+                                    What Information We Collect
+                                </a></li>
+                                <li><a href="#how-we-use" class="flex items-center hover:underline">
+                                    <i data-lucide="settings" class="w-4 h-4 mr-2"></i>
+                                    How We Use Your Information
+                                </a></li>
+                                <li><a href="#data-sharing" class="flex items-center hover:underline">
+                                    <i data-lucide="share-2" class="w-4 h-4 mr-2"></i>
+                                    Data Sharing & Third Parties
+                                </a></li>
+                                <li><a href="#your-rights" class="flex items-center hover:underline">
+                                    <i data-lucide="user-check" class="w-4 h-4 mr-2"></i>
+                                    Your Rights
+                                </a></li>
+                                <li><a href="#cookie-policy" class="flex items-center hover:underline">
+                                    <i data-lucide="cookie" class="w-4 h-4 mr-2"></i>
+                                    Cookie Policy
+                                </a></li>
+                                <li><a href="#contact-details" class="flex items-center hover:underline">
+                                    <i data-lucide="mail" class="w-4 h-4 mr-2"></i>
+                                    Contact Details
+                                </a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Privacy Policy Sections -->
+                    <div class="section-reveal">
+                        
+                        <!-- Section 1: What Information We Collect -->
+                        <div class="accordion-item policy-section" id="information-collect">
+                            <div class="accordion-header" onclick="toggleAccordion(this)">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <i data-lucide="database" class="w-5 h-5"></i>
+                                        <h2 class="font-playfair font-semibold text-xl">What Information We Collect</h2>
+                                    </div>
+                                    <i data-lucide="chevron-down" class="w-5 h-5 accordion-icon"></i>
+                                </div>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    <div class="prose prose-gray max-w-none">
+                                        <h3 class="font-semibold text-lg mb-4">Student Information</h3>
+                                        <ul class="list-disc list-inside space-y-2 mb-6">
+                                            <li>Personal details (name, date of birth, address, contact information)</li>
+                                            <li>Academic records and performance data</li>
+                                            <li>Attendance records and behavioral information</li>
+                                            <li>Medical information and emergency contacts</li>
+                                            <li>Photos and videos for educational and promotional purposes</li>
+                                            <li>Financial information related to school fees and payments</li>
+                                        </ul>
+                                        
+                                        <h3 class="font-semibold text-lg mb-4">Parent/Guardian Information</h3>
+                                        <ul class="list-disc list-inside space-y-2 mb-6">
+                                            <li>Contact details and identification information</li>
+                                            <li>Communication preferences and records</li>
+                                            <li>Financial information for fee payment purposes</li>
+                                            <li>Emergency contact information</li>
+                                        </ul>
+                                        
+                                        <h3 class="font-semibold text-lg mb-4">Website and Digital Information</h3>
+                                        <ul class="list-disc list-inside space-y-2 mb-6">
+                                            <li>IP address and browser information</li>
+                                            <li>Cookies and usage data</li>
+                                            <li>Form submissions and inquiries</li>
+                                            <li>Login credentials for online portals</li>
+                                        </ul>
+                                        
+                                        <div class="highlight-box">
+                                            <div class="flex items-start space-x-3">
+                                                <i data-lucide="shield-alert" class="w-5 h-5 text-amber-600 mt-1"></i>
+                                                <div>
+                                                    <h4 class="font-semibold text-gray-900 mb-2">Sensitive Information</h4>
+                                                    <p class="text-gray-700">
+                                                        We may collect sensitive information such as medical records, learning difficulties, or special needs information solely for the purpose of providing appropriate care and educational support.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 2: How We Use Your Information -->
+                        <div class="accordion-item policy-section" id="how-we-use">
+                            <div class="accordion-header" onclick="toggleAccordion(this)">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <i data-lucide="settings" class="w-5 h-5"></i>
+                                        <h2 class="font-playfair font-semibold text-xl">How We Use Your Information</h2>
+                                    </div>
+                                    <i data-lucide="chevron-down" class="w-5 h-5 accordion-icon"></i>
+                                </div>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    <div class="prose prose-gray max-w-none">
+                                        <h3 class="font-semibold text-lg mb-4">Educational Purposes</h3>
+                                        <ul class="list-disc list-inside space-y-2 mb-6">
+                                            <li>Providing educational services and curriculum delivery</li>
+                                            <li>Monitoring academic progress and performance</li>
+                                            <li>Arranging educational trips and extracurricular activities</li>
+                                            <li>Providing pastoral care and support services</li>
+                                            <li>Managing special educational needs and disabilities</li>
+                                        </ul>
+                                        
+                                        <h3 class="font-semibold text-lg mb-4">Administrative Purposes</h3>
+                                        <ul class="list-disc list-inside space-y-2 mb-6">
+                                            <li>Student enrollment and registration processes</li>
+                                            <li>Fee collection and financial management</li>
+                                            <li>Communication with parents and guardians</li>
+                                            <li>Attendance tracking and reporting</li>
+                                            <li>Maintaining school records and databases</li>
+                                        </ul>
+                                        
+                                        <h3 class="font-semibold text-lg mb-4">Safety and Security</h3>
+                                        <ul class="list-disc list-inside space-y-2 mb-6">
+                                            <li>Ensuring student safety and wellbeing</li>
+                                            <li>Emergency contact and medical care</li>
+                                            <li>Safeguarding and child protection</li>
+                                            <li>Security monitoring and access control</li>
+                                        </ul>
+                                        
+                                        <h3 class="font-semibold text-lg mb-4">Legal and Regulatory Compliance</h3>
+                                        <ul class="list-disc list-inside space-y-2 mb-6">
+                                            <li>Meeting statutory reporting requirements</li>
+                                            <li>Compliance with education regulations</li>
+                                            <li>Supporting legal proceedings if necessary</li>
+                                            <li>Responding to lawful requests from authorities</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 3: Data Sharing & Third Parties -->
+                        <div class="accordion-item policy-section" id="data-sharing">
+                            <div class="accordion-header" onclick="toggleAccordion(this)">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <i data-lucide="share-2" class="w-5 h-5"></i>
+                                        <h2 class="font-playfair font-semibold text-xl">Data Sharing & Third Parties</h2>
+                                    </div>
+                                    <i data-lucide="chevron-down" class="w-5 h-5 accordion-icon"></i>
+                                </div>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    <div class="prose prose-gray max-w-none">
+                                        <h3 class="font-semibold text-lg mb-4">When We Share Information</h3>
+                                        <p class="mb-6">We may share your personal information with third parties only in the following circumstances:</p>
+                                        
+                                        <h3 class="font-semibold text-lg mb-4">Educational Partners</h3>
+                                        <ul class="list-disc list-inside space-y-2 mb-6">
+                                            <li>Examination boards and educational authorities</li>
+                                            <li>Other schools during student transfers</li>
+                                            <li>Educational service providers and consultants</li>
+                                            <li>Library and learning resource providers</li>
+                                        </ul>
+                                        
+                                        <h3 class="font-semibold text-lg mb-4">Service Providers</h3>
+                                        <ul class="list-disc list-inside space-y-2 mb-6">
+                                            <li>IT service providers and cloud storage companies</li>
+                                            <li>Payment processing companies</li>
+                                            <li>Transportation and catering services</li>
+                                            <li>Marketing and communication platforms</li>
+                                        </ul>
+                                        
+                                        <h3 class="font-semibold text-lg mb-4">Legal Requirements</h3>
+                                        <ul class="list-disc list-inside space-y-2 mb-6">
+                                            <li>Government agencies and regulatory bodies</li>
+                                            <li>Law enforcement agencies when required by law</li>
+                                            <li>Child protection services</li>
+                                            <li>Court orders and legal proceedings</li>
+                                        </ul>
+                                        
+                                        <div class="important-note">
+                                            <div class="flex items-start space-x-3">
+                                                <i data-lucide="shield-check" class="w-5 h-5 text-blue-600 mt-1"></i>
+                                                <div>
+                                                    <h4 class="font-semibold text-gray-900 mb-2">Data Protection Measures</h4>
+                                                    <p class="text-gray-700">
+                                                        All third parties we work with are required to implement appropriate technical and organizational measures to protect your personal data and use it only for the specified purposes.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 4: Your Rights -->
+                        <div class="accordion-item policy-section" id="your-rights">
+                            <div class="accordion-header" onclick="toggleAccordion(this)">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <i data-lucide="user-check" class="w-5 h-5"></i>
+                                        <h2 class="font-playfair font-semibold text-xl">Your Rights</h2>
+                                    </div>
+                                    <i data-lucide="chevron-down" class="w-5 h-5 accordion-icon"></i>
+                                </div>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    <div class="prose prose-gray max-w-none">
+                                        <p class="mb-6">Under data protection law, you have several rights regarding your personal information:</p>
+                                        
+                                        <h3 class="font-semibold text-lg mb-4">Access Rights</h3>
+                                        <ul class="list-disc list-inside space-y-2 mb-6">
+                                            <li><strong>Right to be informed:</strong> You have the right to know how your data is being used</li>
+                                            <li><strong>Right of access:</strong> You can request copies of your personal data</li>
+                                            <li><strong>Right to rectification:</strong> You can ask us to correct inaccurate information</li>
+                                        </ul>
+                                        
+                                        <h3 class="font-semibold text-lg mb-4">Control Rights</h3>
+                                        <ul class="list-disc list-inside space-y-2 mb-6">
+                                            <li><strong>Right to erasure:</strong> You can request deletion of your data in certain circumstances</li>
+                                            <li><strong>Right to restrict processing:</strong> You can limit how we use your data</li>
+                                            <li><strong>Right to data portability:</strong> You can request your data in a portable format</li>
+                                            <li><strong>Right to object:</strong> You can object to certain types of processing</li>
+                                        </ul>
+                                        
+                                        <h3 class="font-semibold text-lg mb-4">How to Exercise Your Rights</h3>
+                                        <p class="mb-4">To exercise any of these rights, please contact us at:</p>
+                                        <ul class="list-disc list-inside space-y-2 mb-6">
+                                            <li>Email: <a href="mailto:privacy@riaraschool.ac.ke" class="text-primary hover:text-accent">privacy@riaraschool.ac.ke</a></li>
+                                            <li>Phone: <a href="tel:+254123456789" class="text-primary hover:text-accent">+254 123 456 789</a></li>
+                                            <li>Post: Data Protection Officer, Riara School, P.O. Box 1234-00100, Nairobi</li>
+                                        </ul>
+                                        
+                                        <div class="highlight-box">
+                                            <div class="flex items-start space-x-3">
+                                                <i data-lucide="clock" class="w-5 h-5 text-amber-600 mt-1"></i>
+                                                <div>
+                                                    <h4 class="font-semibold text-gray-900 mb-2">Response Timeline</h4>
+                                                    <p class="text-gray-700">
+                                                        We will respond to your request within 30 days. If we need more time, we'll let you know and explain why.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 5: Cookie Policy -->
+                        <div class="accordion-item policy-section" id="cookie-policy">
+                            <div class="accordion-header" onclick="toggleAccordion(this)">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <i data-lucide="cookie" class="w-5 h-5"></i>
+                                        <h2 class="font-playfair font-semibold text-xl">Cookie Policy</h2>
+                                    </div>
+                                    <i data-lucide="chevron-down" class="w-5 h-5 accordion-icon"></i>
+                                </div>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    <div class="prose prose-gray max-w-none">
+                                        <h3 class="font-semibold text-lg mb-4">What Are Cookies?</h3>
+                                        <p class="mb-6">Cookies are small text files that are placed on your device when you visit our website. They help us provide you with a better browsing experience and allow certain features to work properly.</p>
+                                        
+                                        <h3 class="font-semibold text-lg mb-4">Types of Cookies We Use</h3>
+                                        <ul class="list-disc list-inside space-y-2 mb-6">
+                                            <li><strong>Essential Cookies:</strong> Required for the website to function properly</li>
+                                            <li><strong>Performance Cookies:</strong> Help us understand how visitors interact with our website</li>
+                                            <li><strong>Functionality Cookies:</strong> Remember your preferences and settings</li>
+                                            <li><strong>Marketing Cookies:</strong> Used to deliver relevant advertisements</li>
+                                        </ul>
+                                        
+                                        <h3 class="font-semibold text-lg mb-4">Managing Cookies</h3>
+                                        <p class="mb-4">You can control cookies through your browser settings. However, please note that disabling certain cookies may affect the functionality of our website.</p>
+                                        
+                                        <div class="important-note">
+                                            <div class="flex items-start space-x-3">
+                                                <i data-lucide="settings" class="w-5 h-5 text-blue-600 mt-1"></i>
+                                                <div>
+                                                    <h4 class="font-semibold text-gray-900 mb-2">Cookie Consent</h4>
+                                                    <p class="text-gray-700">
+                                                        By continuing to use our website, you consent to our use of cookies as described in this policy. You can change your cookie preferences at any time through your browser settings.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 6: Contact Details -->
+                        <div class="accordion-item policy-section" id="contact-details">
+                            <div class="accordion-header" onclick="toggleAccordion(this)">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <i data-lucide="mail" class="w-5 h-5"></i>
+                                        <h2 class="font-playfair font-semibold text-xl">Contact Details</h2>
+                                    </div>
+                                    <i data-lucide="chevron-down" class="w-5 h-5 accordion-icon"></i>
+                                </div>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    <div class="prose prose-gray max-w-none">
+                                        <h3 class="font-semibold text-lg mb-4">Data Protection Officer</h3>
+                                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                                            <div>
+                                                <h4 class="font-semibold mb-2">Contact Information</h4>
+                                                <ul class="space-y-2">
+                                                    <li class="flex items-center">
+                                                        <i data-lucide="mail" class="w-4 h-4 mr-2 text-primary"></i>
+                                                        <a href="mailto:privacy@riaraschool.ac.ke" class="text-primary hover:text-accent">privacy@riaraschool.ac.ke</a>
+                                                    </li>
+                                                    <li class="flex items-center">
+                                                        <i data-lucide="phone" class="w-4 h-4 mr-2 text-primary"></i>
+                                                        <a href="tel:+254123456789" class="text-primary hover:text-accent">+254 123 456 789</a>
+                                                    </li>
+                                                    <li class="flex items-start">
+                                                        <i data-lucide="map-pin" class="w-4 h-4 mr-2 text-primary mt-1"></i>
+                                                        <span>Riara School<br>P.O. Box 1234-00100<br>Nairobi, Kenya</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div>
+                                                <h4 class="font-semibold mb-2">Office Hours</h4>
+                                                <ul class="space-y-2">
+                                                    <li class="flex items-center">
+                                                        <i data-lucide="clock" class="w-4 h-4 mr-2 text-primary"></i>
+                                                        <span>Monday - Friday: 8:00 AM - 5:00 PM</span>
+                                                    </li>
+                                                    <li class="flex items-center">
+                                                        <i data-lucide="clock" class="w-4 h-4 mr-2 text-primary"></i>
+                                                        <span>Saturday: 9:00 AM - 1:00 PM</span>
+                                                    </li>
+                                                    <li class="flex items-center">
+                                                        <i data-lucide="clock" class="w-4 h-4 mr-2 text-primary"></i>
+                                                        <span>Sunday: Closed</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        
+                                        <h3 class="font-semibold text-lg mb-4">Complaints and Concerns</h3>
+                                        <p class="mb-4">If you have any concerns about how we handle your personal data, please contact us first. If you're not satisfied with our response, you can also contact:</p>
+                                        <ul class="list-disc list-inside space-y-2">
+                                            <li>Office of the Data Protection Commissioner (Kenya)</li>
+                                            <li>Website: <a href="https://www.odpc.go.ke" class="text-primary hover:text-accent">www.odpc.go.ke</a></li>
+                                            <li>Email: <a href="mailto:info@odpc.go.ke" class="text-primary hover:text-accent">info@odpc.go.ke</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Final Note -->
+                    <div class="section-reveal mt-12">
+                        <div class="bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg p-8 text-center">
+                            <div class="flex items-center justify-center mb-4">
+                                <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+                                    <i data-lucide="shield-check" class="w-6 h-6 text-white"></i>
+                                </div>
+                            </div>
+                            <h3 class="font-playfair font-semibold text-2xl mb-4">Your Privacy Matters</h3>
+                            <p class="text-gray-600 max-w-2xl mx-auto">
+                                We are committed to protecting your privacy and handling your personal information with care. If you have any questions about this privacy policy or how we handle your data, please don't hesitate to contact us.
+                            </p>
+                            <div class="mt-6">
+                                <a href="#contact-details" class="bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-opacity-90 transition-colors inline-flex items-center">
+                                    <i data-lucide="mail" class="w-4 h-4 mr-2"></i>
+                                    Contact Us
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </section>
+    </div>
+
+
     <!-- CONTACT PAGE -->
     <div id="contact" class="page">
         <section>
 
-   <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden hero-pattern">
-        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-        <div class="absolute inset-0 bg-cover bg-center opacity-30" style="background-image: url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')"></div>
-        
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
-            <div class="text-center">
-                <h1 class="font-playfair text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight tracking-tight mb-6">
-                    Let's Connect
-                </h1>
-                <p class="text-xl text-gray-200 leading-relaxed max-w-3xl mx-auto mb-8">
-                    We're here to answer your questions and help you discover everything Riara School has to offer. Get in touch with us today.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button class="bg-primary text-white px-8 py-3 rounded-lg font-medium hover:bg-opacity-90 transition-colors btn-hover" onclick="scrollToForm()">
-                        <i data-lucide="message-circle" class="w-5 h-5 inline mr-2"></i>
-                        Send Message
-                    </button>
-                    <button class="bg-accent text-white px-8 py-3 rounded-lg font-medium hover:bg-opacity-90 transition-colors btn-hover" onclick="scrollToLocation()">
-                        <i data-lucide="map-pin" class="w-5 h-5 inline mr-2"></i>
-                        Visit Us
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Information Cards -->
-    <section class="py-16 lg:py-24 bg-white section-reveal">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Address Card -->
-                <div class="contact-card p-8 rounded-2xl text-center">
-                    <div class="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i data-lucide="map-pin" class="w-8 h-8 text-white"></i>
+        <!-- Hero Section -->
+            <section class="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden hero-pattern">
+                <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+                <div class="absolute inset-0 bg-cover bg-center opacity-30" style="background-image: url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')"></div>
+                
+                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+                    <div class="text-center">
+                        <h1 class="font-playfair text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight tracking-tight mb-6">
+                            Let's Connect
+                        </h1>
+                        <p class="text-xl text-gray-200 leading-relaxed max-w-3xl mx-auto mb-8">
+                            We're here to answer your questions and help you discover everything Riara School has to offer. Get in touch with us today.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                            <button class="bg-primary text-white px-8 py-3 rounded-lg font-medium hover:bg-opacity-90 transition-colors btn-hover" onclick="scrollToForm()">
+                                <i data-lucide="message-circle" class="w-5 h-5 inline mr-2"></i>
+                                Send Message
+                            </button>
+                            <button class="bg-accent text-white px-8 py-3 rounded-lg font-medium hover:bg-opacity-90 transition-colors btn-hover" onclick="scrollToLocation()">
+                                <i data-lucide="map-pin" class="w-5 h-5 inline mr-2"></i>
+                                Visit Us
+                            </button>
+                        </div>
                     </div>
-                    <h3 class="font-playfair font-semibold text-xl mb-4">Visit Our Campus</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        123 Education Lane<br>
-                        Nairobi, Kenya<br>
-                        P.O. Box 1234-00100
-                    </p>
-                    <button class="mt-6 text-primary font-medium hover:text-accent transition-colors" onclick="scrollToLocation()">
-                        <i data-lucide="external-link" class="w-4 h-4 inline mr-2"></i>
-                        Get Directions
-                    </button>
                 </div>
+            </section>
 
-                <!-- Phone Card -->
-                <div class="contact-card p-8 rounded-2xl text-center">
-                    <div class="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i data-lucide="phone" class="w-8 h-8 text-white"></i>
-                    </div>
-                    <h3 class="font-playfair font-semibold text-xl mb-4">Call Us</h3>
-                    <p class="text-gray-600 leading-relaxed mb-2">
-                        Main Office: <a href="tel:+254123456789" class="text-primary hover:text-accent transition-colors">+254 123 456 789</a>
-                    </p>
-                    <p class="text-gray-600 leading-relaxed">
-                        Admissions: <a href="tel:+254123456790" class="text-primary hover:text-accent transition-colors">+254 123 456 790</a>
-                    </p>
-                    <p class="text-sm text-gray-500 mt-4">
-                        Mon - Fri: 8:00 AM - 5:00 PM<br>
-                        Sat: 9:00 AM - 1:00 PM
-                    </p>
-                </div>
+            <!-- Contact Information Cards -->
+            <section class="py-16 lg:py-24 bg-white section-reveal">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <!-- Address Card -->
+                        <div class="contact-card p-8 rounded-2xl text-center">
+                            <div class="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i data-lucide="map-pin" class="w-8 h-8 text-white"></i>
+                            </div>
+                            <h3 class="font-playfair font-semibold text-xl mb-4">Visit Our Campus</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                123 Education Lane<br>
+                                Nairobi, Kenya<br>
+                                P.O. Box 1234-00100
+                            </p>
+                            <button class="mt-6 text-primary font-medium hover:text-accent transition-colors" onclick="scrollToLocation()">
+                                <i data-lucide="external-link" class="w-4 h-4 inline mr-2"></i>
+                                Get Directions
+                            </button>
+                        </div>
 
-                <!-- Email Card -->
-                <div class="contact-card p-8 rounded-2xl text-center">
-                    <div class="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i data-lucide="mail" class="w-8 h-8 text-white"></i>
+                        <!-- Phone Card -->
+                        <div class="contact-card p-8 rounded-2xl text-center">
+                            <div class="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i data-lucide="phone" class="w-8 h-8 text-white"></i>
+                            </div>
+                            <h3 class="font-playfair font-semibold text-xl mb-4">Call Us</h3>
+                            <p class="text-gray-600 leading-relaxed mb-2">
+                                Main Office: <a href="tel:+254123456789" class="text-primary hover:text-accent transition-colors">+254 123 456 789</a>
+                            </p>
+                            <p class="text-gray-600 leading-relaxed">
+                                Admissions: <a href="tel:+254123456790" class="text-primary hover:text-accent transition-colors">+254 123 456 790</a>
+                            </p>
+                            <p class="text-sm text-gray-500 mt-4">
+                                Mon - Fri: 8:00 AM - 5:00 PM<br>
+                                Sat: 9:00 AM - 1:00 PM
+                            </p>
+                        </div>
+
+                        <!-- Email Card -->
+                        <div class="contact-card p-8 rounded-2xl text-center">
+                            <div class="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i data-lucide="mail" class="w-8 h-8 text-white"></i>
+                            </div>
+                            <h3 class="font-playfair font-semibold text-xl mb-4">Email Us</h3>
+                            <p class="text-gray-600 leading-relaxed mb-2">
+                                General: <a href="mailto:info@riaraschool.ac.ke" class="text-primary hover:text-accent transition-colors">info@riaraschool.ac.ke</a>
+                            </p>
+                            <p class="text-gray-600 leading-relaxed">
+                                Admissions: <a href="mailto:admissions@riaraschool.ac.ke" class="text-primary hover:text-accent transition-colors">admissions@riaraschool.ac.ke</a>
+                            </p>
+                            <p class="text-sm text-gray-500 mt-4">
+                                We'll respond within 24 hours<br>
+                                during business days
+                            </p>
+                        </div>
                     </div>
-                    <h3 class="font-playfair font-semibold text-xl mb-4">Email Us</h3>
-                    <p class="text-gray-600 leading-relaxed mb-2">
-                        General: <a href="mailto:info@riaraschool.ac.ke" class="text-primary hover:text-accent transition-colors">info@riaraschool.ac.ke</a>
-                    </p>
-                    <p class="text-gray-600 leading-relaxed">
-                        Admissions: <a href="mailto:admissions@riaraschool.ac.ke" class="text-primary hover:text-accent transition-colors">admissions@riaraschool.ac.ke</a>
-                    </p>
-                    <p class="text-sm text-gray-500 mt-4">
-                        We'll respond within 24 hours<br>
-                        during business days
-                    </p>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
     <!-- Contact Form and Map Section -->
     <section class="py-16 lg:py-24 bg-cream section-reveal">
