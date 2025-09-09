@@ -191,6 +191,24 @@
                     </div>
                 </div>
                 
+              <!-- Campuses Dropdown in Nav-->
+                    <li class="relative group" aria-haspopup="true">
+                        <button class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-md inline-flex items-center"
+                                aria-expanded="false" aria-controls="campusesMenu">
+                            Campuses
+                            <i data-lucide="chevron-down" class="w-4 h-4 ml-1"></i>
+                        </button>
+                        <div id="campusesMenu" class="invisible opacity-0 group-hover:visible group-hover:opacity-100 focus-within:visible focus-within:opacity-100 transition-opacity duration-150 absolute left-0 mt-2 w-[28rem] bg-white border border-gray-200 rounded-lg shadow-lg p-3 grid grid-cols-1 sm:grid-cols-2 gap-1">
+                            <a href="/campuses/riara-kindergarten-parklands" class="px-3 py-2 rounded-md hover:bg-gray-50 text-sm text-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent">Riara Kindergarten (Parklands)</a>
+                            <a href="/campuses/riara-junior-school" class="px-3 py-2 rounded-md hover:bg-gray-50 text-sm text-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent">Riara Junior School</a>
+                            <a href="/campuses/riara-springs-primary" class="px-3 py-2 rounded-md hover:bg-gray-50 text-sm text-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent">Riara Springs Primary</a>
+                            <a href="/campuses/riara-springs-girls-high" class="px-3 py-2 rounded-md hover:bg-gray-50 text-sm text-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent">Riara Springs Girls’ High</a>
+                            <a href="/campuses/riara-international-school" class="px-3 py-2 rounded-md hover:bg-gray-50 text-sm text-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent">Riara International School</a>
+                            <a href="/campuses/riara-university" class="px-3 py-2 rounded-md hover:bg-gray-50 text-sm text-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent">Riara University</a>
+                        </div>
+                    </li>
+
+
                 <button id="menuToggle" class="p-2 rounded-md hover:bg-gray-100 transition-colors animate-fade-in">
                     <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
@@ -298,8 +316,10 @@
         <!-- Hero Section -->
         <section class="relative bg-gradient-to-r from-slate-900 to-slate-800 text-white">
             <div class="absolute inset-0 bg-black bg-opacity-40"></div>
-            <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=2000&amp;q=80')"></div>
-            
+            <div class="absolute inset-0 bg-cover bg-center">
+                <img src="images/Hero image.jpg" alt="Hero Image" class="object-cover w-full h-full">
+            </div>
+
             <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
                 <div class="max-w-3xl">
                     <h1 class="font-playfair text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight tracking-tight animate-slide-up">
@@ -344,6 +364,93 @@
             </div>
         </div>
     </section>
+
+    <!-- Campuses Highlights Strip -->
+        <section class="bg-white border-b border-gray-100" aria-label="Campuses highlights">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="font-playfair text-2xl md:text-3xl font-semibold tracking-tight text-gray-900">Explore Our Campuses</h2>
+                    <div class="hidden lg:flex items-center gap-2">
+                        <button id="campusPrev" class="p-2 rounded-md border border-gray-200 hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent" aria-label="Previous campuses">
+                            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                        </button>
+                        <button id="campusNext" class="p-2 rounded-md border border-gray-200 hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent" aria-label="Next campuses">
+                            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="campusCarousel" class="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-px-4 pr-4 lg:pr-0 lg:overflow-hidden" tabindex="0" aria-label="Campuses carousel">
+                    <!-- Card -->
+                    <article class="snap-start flex-shrink-0 basis-[85%] sm:basis-[55%] md:basis-[32%] lg:basis-[18%] bg-gray-50 rounded-xl overflow-hidden border border-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=800&q=70" alt="Riara Kindergarten (Parklands)" class="h-36 w-full object-cover">
+                        <div class="p-4">
+                            <h3 class="font-playfair text-lg font-semibold text-gray-900">Riara Kindergarten (Parklands)</h3>
+                            <p class="text-sm text-gray-600 mt-1">Parklands</p>
+                            <a href="/campuses/riara-kindergarten-parklands" class="mt-3 inline-flex items-center text-sm text-accent hover:underline">
+                                Explore campus
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                            </a>
+                        </div>
+                    </article>
+                    <article class="snap-start flex-shrink-0 basis-[85%] sm:basis-[55%] md:basis-[32%] lg:basis-[18%] bg-gray-50 rounded-xl overflow-hidden border border-gray-200">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=70" alt="Riara Junior School" class="h-36 w-full object-cover">
+                        <div class="p-4">
+                            <h3 class="font-playfair text-lg font-semibold text-gray-900">Riara Junior School</h3>
+                            <p class="text-sm text-gray-600 mt-1">Nairobi</p>
+                            <a href="/campuses/riara-junior-school" class="mt-3 inline-flex items-center text-sm text-accent hover:underline">
+                                Explore campus
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                            </a>
+                        </div>
+                    </article>
+                    <article class="snap-start flex-shrink-0 basis-[85%] sm:basis-[55%] md:basis-[32%] lg:basis-[18%] bg-gray-50 rounded-xl overflow-hidden border border-gray-200">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?auto=format&fit=crop&w=800&q=70" alt="Riara Springs Primary" class="h-36 w-full object-cover">
+                        <div class="p-4">
+                            <h3 class="font-playfair text-lg font-semibold text-gray-900">Riara Springs Primary</h3>
+                            <p class="text-sm text-gray-600 mt-1">Imara Daima</p>
+                            <a href="/campuses/riara-springs-primary" class="mt-3 inline-flex items-center text-sm text-accent hover:underline">
+                                Explore campus
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                            </a>
+                        </div>
+                    </article>
+                    <article class="snap-start flex-shrink-0 basis-[85%] sm:basis-[55%] md:basis-[32%] lg:basis-[18%] bg-gray-50 rounded-xl overflow-hidden border border-gray-200">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=70" alt="Riara Springs Girls’ High" class="h-36 w-full object-cover">
+                        <div class="p-4">
+                            <h3 class="font-playfair text-lg font-semibold text-gray-900">Riara Springs Girls’ High</h3>
+                            <p class="text-sm text-gray-600 mt-1">Imara Daima</p>
+                            <a href="/campuses/riara-springs-girls-high" class="mt-3 inline-flex items-center text-sm text-accent hover:underline">
+                                Explore campus
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                            </a>
+                        </div>
+                    </article>
+                    <article class="snap-start flex-shrink-0 basis-[85%] sm:basis-[55%] md:basis-[32%] lg:basis-[18%] bg-gray-50 rounded-xl overflow-hidden border border-gray-200">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=70" alt="Riara International School" class="h-36 w-full object-cover">
+                        <div class="p-4">
+                            <h3 class="font-playfair text-lg font-semibold text-gray-900">Riara International School</h3>
+                            <p class="text-sm text-gray-600 mt-1">Nairobi</p>
+                            <a href="/campuses/riara-international-school" class="mt-3 inline-flex items-center text-sm text-accent hover:underline">
+                                Explore campus
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                            </a>
+                        </div>
+                    </article>
+                    <article class="snap-start flex-shrink-0 basis-[85%] sm:basis-[55%] md:basis-[32%] lg:basis-[18%] bg-gray-50 rounded-xl overflow-hidden border border-gray-200">
+                        <img loading="lazy" src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=800&q=70" alt="Riara University" class="h-36 w-full object-cover">
+                        <div class="p-4">
+                            <h3 class="font-playfair text-lg font-semibold text-gray-900">Riara University</h3>
+                            <p class="text-sm text-gray-600 mt-1">Nairobi</p>
+                            <a href="/campuses/riara-university" class="mt-3 inline-flex items-center text-sm text-accent hover:underline">
+                                Explore campus
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
 
 
     <!-- About Preview Section -->
@@ -418,6 +525,73 @@
                         <h3 class="font-playfair text-xl font-semibold text-gray-900 mb-4">Personalized Learning</h3>
                         <p class="text-gray-600">Small class sizes and individualized attention to ensure every student reaches their full potential.</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+                <!-- Academics Overview -->
+        <section class="py-16 lg:py-24 bg-white" aria-labelledby="academics-title">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 id="academics-title" class="font-playfair text-3xl md:text-4xl font-semibold text-gray-900 tracking-tight mb-4">
+                        Academics Overview
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        Pathways for every learner with options in CBC and International curricula.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-playfair text-xl font-semibold text-gray-900">CBC Curriculum</h3>
+                            <i data-lucide="book-open-check" class="w-5 h-5 text-accent"></i>
+                        </div>
+                        <p class="text-gray-600 mt-2">Competency-Based Curriculum with strong foundational skills and creativity.</p>
+                        <a href="/admissions/curriculum/cbc" class="mt-4 inline-flex items-center text-accent hover:underline">
+                            Learn more
+                            <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                        </a>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-playfair text-xl font-semibold text-gray-900">International Curriculum</h3>
+                            <i data-lucide="globe" class="w-5 h-5 text-accent"></i>
+                        </div>
+                        <p class="text-gray-600 mt-2">Globally-recognized programs preparing students for international pathways.</p>
+                        <a href="/admissions/curriculum/international" class="mt-4 inline-flex items-center text-accent hover:underline">
+                            Learn more
+                            <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Callouts -->
+        <section class="py-12 lg:py-16 bg-gray-50" aria-label="Key actions">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-3 gap-6">
+                    <a href="/admissions/how-to-apply" class="group bg-white rounded-xl p-6 border border-gray-200 hover:shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-playfair text-xl font-semibold text-gray-900">Admissions</h3>
+                            <i data-lucide="arrow-right" class="w-5 h-5 text-accent group-hover:translate-x-0.5 transition-transform"></i>
+                        </div>
+                        <p class="text-gray-600 mt-2">How to Apply, Fees &amp; Scholarships, and more.</p>
+                    </a>
+                    <a href="/calendar" class="group bg-white rounded-xl p-6 border border-gray-200 hover:shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-playfair text-xl font-semibold text-gray-900">Calendar</h3>
+                            <i data-lucide="calendar" class="w-5 h-5 text-accent"></i>
+                        </div>
+                        <p class="text-gray-600 mt-2">Key dates for terms, exams, and events.</p>
+                    </a>
+                    <a href="[PASTE_FIGMA_PARENT_PORTAL_LINK]" target="_blank" rel="noopener noreferrer" class="group bg-white rounded-xl p-6 border border-gray-200 hover:shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-playfair text-xl font-semibold text-gray-900">Parents Communications</h3>
+                            <i data-lucide="external-link" class="w-5 h-5 text-accent"></i>
+                        </div>
+                        <p class="text-gray-600 mt-2">Access the Parents Portal for updates and resources.</p>
+                    </a>
                 </div>
             </div>
         </section>
@@ -3026,6 +3200,69 @@
 
         // Initialize first load
         updateVisibleItems();
+
+            // Campuses carousel controls with autoplay and keyboard support
+    (function() {
+        const carousel = document.getElementById('campusCarousel');
+        const prev = document.getElementById('campusPrev');
+        const next = document.getElementById('campusNext');
+        if (!carousel) return;
+
+        function scrollAmount() {
+            // Scroll nearly a full view
+            return Math.max(280, Math.floor(carousel.clientWidth * 0.9));
+        }
+
+        function scrollByDir(dir) {
+            carousel.scrollBy({ left: dir * scrollAmount(), behavior: 'smooth' });
+        }
+
+        let auto = null;
+        function startAuto() {
+            stopAuto();
+            auto = setInterval(() => {
+                // If near end, loop to start
+                const nearEnd = carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 5;
+                if (nearEnd) {
+                    carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    scrollByDir(1);
+                }
+            }, 5000);
+        }
+        function stopAuto() {
+            if (auto) {
+                clearInterval(auto);
+                auto = null;
+            }
+        }
+
+        if (prev) prev.addEventListener('click', () => scrollByDir(-1));
+        if (next) next.addEventListener('click', () => scrollByDir(1));
+
+        // Pause on hover/focus; resume on leave/blur
+        ['mouseenter', 'focusin'].forEach(ev => carousel.addEventListener(ev, stopAuto));
+        ['mouseleave', 'focusout'].forEach(ev => carousel.addEventListener(ev, startAuto));
+
+        // Keyboard navigation
+        carousel.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                scrollByDir(1);
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                scrollByDir(-1);
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                carousel.scrollTo({ left: 0, behavior: 'smooth' });
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                carousel.scrollTo({ left: carousel.scrollWidth, behavior: 'smooth' });
+            }
+        });
+
+        startAuto();
+    })();
     </script>
 
 </body></html>
