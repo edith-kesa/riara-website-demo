@@ -6,6 +6,20 @@
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <script>
+    tailwind.config = {
+    theme: {
+    extend: {
+    colors: {
+    'riara-brown': '#5C3B1E',
+    'riara-purple': '#6A2C91',
+    'riara-grey': '#6B7280'
+    },
+    }
+    }
+    }
+    </script>
+    
     <style>
         .font-playfair { font-family: 'Playfair Display', serif; }
         .font-inter { font-family: 'Inter', sans-serif; }
@@ -198,6 +212,8 @@
         .delay-600 { animation-delay: 0.6s; }
     </style>
 </head>
+
+
 <body class="font-inter text-gray-900 bg-cream">
  <!-- ======= Navigation (desktop + mobile) ======= -->
         <nav class="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-100">
@@ -465,7 +481,6 @@
     <!-- HOME PAGE -->
     <div id="home" class="page active">
         <!-- Hero Section -->
-<!-- Hero Section -->
         <section class="relative text-white">
         <!-- Background image -->
         <img src="images/Hero image.jpg"
@@ -3176,6 +3191,321 @@
         </section>
     </div>
 
+
+    
+        <!-- STAFF PAGE -->
+    <div id="staff" class="page">
+        <section>
+            <!-- Main Content -->
+            <main id="main-content" class="flex-1" role="main">
+                <!-- Hero Section -->
+                <section class="bg-riara-brown text-white py-16 lg:py-24">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="text-center">
+                            <h1 class="text-4xl lg:text-6xl font-bold tracking-tight mb-6">Our Dedicated Staff</h1>
+                            <p class="text-xl text-white/90 leading-relaxed max-w-3xl mx-auto">Meet the passionate educators and professionals who make excellence possible at Riara Schools.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Search and Filter -->
+                <section class="py-8 bg-gray-50 border-b border-gray-200">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+                            <div class="relative w-full md:w-96">
+                                <input type="text" placeholder="Search staff by name or department..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-riara-brown focus:border-transparent" id="staff-search">
+                                <i data-lucide="search" class="absolute left-3 top-2.5 w-5 h-5 text-gray-400"></i>
+                            </div>
+                            
+                            <div class="flex flex-wrap gap-2">
+                                <button class="px-4 py-2 rounded-lg bg-riara-brown text-white text-sm font-medium transition-colors duration-200" data-filter="all">All Staff</button>
+                                <button class="px-4 py-2 rounded-lg bg-white text-gray-600 hover:text-riara-brown text-sm font-medium transition-colors duration-200 border border-gray-200" data-filter="leadership">Leadership</button>
+                                <button class="px-4 py-2 rounded-lg bg-white text-gray-600 hover:text-riara-brown text-sm font-medium transition-colors duration-200 border border-gray-200" data-filter="academic">Academic</button>
+                                <button class="px-4 py-2 rounded-lg bg-white text-gray-600 hover:text-riara-brown text-sm font-medium transition-colors duration-200 border border-gray-200" data-filter="support">Support</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Leadership Team -->
+                <section class="py-16">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="text-center mb-12">
+                            <h2 class="text-3xl font-bold text-gray-900 tracking-tight mb-4">Leadership Team</h2>
+                            <p class="text-lg text-gray-600">Experienced leaders guiding our educational vision</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="staff-grid">
+                            
+                            <!-- Principal -->
+                            <div class="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-200" data-category="leadership" data-name="dr sarah kimani" data-department="leadership">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face" alt="Dr. Sarah Kimani, Principal" class="w-full h-64 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold text-gray-900 mb-1">Dr. Sarah Kimani</h3>
+                                    <p class="text-riara-brown font-medium mb-3">Principal</p>
+                                    <p class="text-sm text-gray-600 mb-4">Ed.D in Educational Leadership, 20+ years in education. Passionate about student-centered learning and innovative teaching methods.</p>
+                                    <div class="flex space-x-3">
+                                        <a href="mailto:principal@riaraschools.ac.ke" class="text-gray-400 hover:text-riara-brown transition-colors duration-200" aria-label="Email Dr. Kimani">
+                                            <i data-lucide="mail" class="w-5 h-5"></i>
+                                        </a>
+                                        <a href="#" class="text-gray-400 hover:text-riara-brown transition-colors duration-200" aria-label="LinkedIn profile">
+                                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Deputy Principal -->
+                            <div class="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-200" data-category="leadership" data-name="mr james mwangi" data-department="leadership">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face" alt="Mr. James Mwangi, Deputy Principal" class="w-full h-64 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold text-gray-900 mb-1">Mr. James Mwangi</h3>
+                                    <p class="text-riara-brown font-medium mb-3">Deputy Principal</p>
+                                    <p class="text-sm text-gray-600 mb-4">M.Ed in Administration, 15 years experience. Specializes in curriculum development and teacher professional development.</p>
+                                    <div class="flex space-x-3">
+                                        <a href="mailto:deputy@riaraschools.ac.ke" class="text-gray-400 hover:text-riara-brown transition-colors duration-200" aria-label="Email Mr. Mwangi">
+                                            <i data-lucide="mail" class="w-5 h-5"></i>
+                                        </a>
+                                        <a href="#" class="text-gray-400 hover:text-riara-brown transition-colors duration-200" aria-label="LinkedIn profile">
+                                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Academic Director -->
+                            <div class="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-200" data-category="leadership" data-name="ms grace achieng" data-department="academic">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b898?w=300&h=300&fit=crop&crop=face" alt="Ms. Grace Achieng, Academic Director" class="w-full h-64 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold text-gray-900 mb-1">Ms. Grace Achieng</h3>
+                                    <p class="text-riara-brown font-medium mb-3">Academic Director</p>
+                                    <p class="text-sm text-gray-600 mb-4">M.A in Curriculum Studies, 12 years experience. Leads academic excellence initiatives and assessment strategies.</p>
+                                    <div class="flex space-x-3">
+                                        <a href="mailto:academic@riaraschools.ac.ke" class="text-gray-400 hover:text-riara-brown transition-colors duration-200" aria-label="Email Ms. Achieng">
+                                            <i data-lucide="mail" class="w-5 h-5"></i>
+                                        </a>
+                                        <a href="#" class="text-gray-400 hover:text-riara-brown transition-colors duration-200" aria-label="LinkedIn profile">
+                                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Head of Mathematics -->
+                            <div class="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-200" data-category="academic" data-name="dr peter njoroge" data-department="mathematics">
+                                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=300&fit=crop&crop=face" alt="Dr. Peter Njoroge, Head of Mathematics" class="w-full h-64 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold text-gray-900 mb-1">Dr. Peter Njoroge</h3>
+                                    <p class="text-riara-brown font-medium mb-3">Head of Mathematics</p>
+                                    <p class="text-sm text-gray-600 mb-4">Ph.D in Mathematics Education, 18 years experience. Champion of problem-solving methodologies and mathematical literacy.</p>
+                                    <div class="flex space-x-3">
+                                        <a href="mailto:mathematics@riaraschools.ac.ke" class="text-gray-400 hover:text-riara-brown transition-colors duration-200" aria-label="Email Dr. Njoroge">
+                                            <i data-lucide="mail" class="w-5 h-5"></i>
+                                        </a>
+                                        <a href="#" class="text-gray-400 hover:text-riara-brown transition-colors duration-200" aria-label="LinkedIn profile">
+                                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Head of Sciences -->
+                            <div class="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-200" data-category="academic" data-name="ms susan wanjiku" data-department="sciences">
+                                <img src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=300&h=300&fit=crop&crop=face" alt="Ms. Susan Wanjiku, Head of Sciences" class="w-full h-64 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold text-gray-900 mb-1">Ms. Susan Wanjiku</h3>
+                                    <p class="text-riara-brown font-medium mb-3">Head of Sciences</p>
+                                    <p class="text-sm text-gray-600 mb-4">M.Sc in Chemistry, B.Ed, 14 years experience. Leads STEM initiatives and laboratory safety protocols.</p>
+                                    <div class="flex space-x-3">
+                                        <a href="mailto:sciences@riaraschools.ac.ke" class="text-gray-400 hover:text-riara-brown transition-colors duration-200" aria-label="Email Ms. Wanjiku">
+                                            <i data-lucide="mail" class="w-5 h-5"></i>
+                                        </a>
+                                        <a href="#" class="text-gray-400 hover:text-riara-brown transition-colors duration-200" aria-label="LinkedIn profile">
+                                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Head of Languages -->
+                            <div class="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-200" data-category="academic" data-name="mr david otieno" data-department="languages">
+                                <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=300&h=300&fit=crop&crop=face" alt="Mr. David Otieno, Head of Languages" class="w-full h-64 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold text-gray-900 mb-1">Mr. David Otieno</h3>
+                                    <p class="text-riara-brown font-medium mb-3">Head of Languages</p>
+                                    <p class="text-sm text-gray-600 mb-4">M.A in Linguistics, 16 years experience. Passionate about multilingual education and literary appreciation.</p>
+                                    <div class="flex space-x-3">
+                                        <a href="mailto:languages@riaraschools.ac.ke" class="text-gray-400 hover:text-riara-brown transition-colors duration-200" aria-label="Email Mr. Otieno">
+                                            <i data-lucide="mail" class="w-5 h-5"></i>
+                                        </a>
+                                        <a href="#" class="text-gray-400 hover:text-riara-brown transition-colors duration-200" aria-label="LinkedIn profile">
+                                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- School Counselor -->
+                            <div class="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-200" data-category="support" data-name="ms mercy wanjiru" data-department="counseling">
+                                <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=300&h=300&fit=crop&crop=face" alt="Ms. Mercy Wanjiru, School Counselor" class="w-full h-64 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold text-gray-900 mb-1">Ms. Mercy Wanjiru</h3>
+                                    <p class="text-riara-brown font-medium mb-3">School Counselor</p>
+                                    <p class="text-sm text-gray-600 mb-4">M.A in Counseling Psychology, 10 years experience. Provides student support and mental health services.</p>
+                                    <div class="flex space-x-3">
+                                        <a href="mailto:counseling@riaraschools.ac.ke" class="text-gray-400 hover:text-riara-brown transition-colors duration-200" aria-label="Email Ms. Wanjiru">
+                                            <i data-lucide="mail" class="w-5 h-5"></i>
+                                        </a>
+                                        <a href="#" class="text-gray-400 hover:text-riara-brown transition-colors duration-200" aria-label="LinkedIn profile">
+                                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Librarian -->
+                            <div class="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-200" data-category="support" data-name="mr anthony kiprotich" data-department="library">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&crop=face" alt="Mr. Anthony Kiprotich, Head Librarian" class="w-full h-64 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold text-gray-900 mb-1">Mr. Anthony Kiprotich</h3>
+                                    <p class="text-riara-brown font-medium mb-3">Head Librarian</p>
+                                    <p class="text-sm text-gray-600 mb-4">M.L.I.S, 8 years experience. Manages digital resources and promotes information literacy across all grade levels.</p>
+                                    <div class="flex space-x-3">
+                                        <a href="mailto:library@riaraschools.ac.ke" class="text-gray-400 hover:text-riara-brown transition-colors duration-200" aria-label="Email Mr. Kiprotich">
+                                            <i data-lucide="mail" class="w-5 h-5"></i>
+                                        </a>
+                                        <a href="#" class="text-gray-400 hover:text-riara-brown transition-colors duration-200" aria-label="LinkedIn profile">
+                                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- IT Coordinator -->
+                            <div class="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-200" data-category="support" data-name="ms faith mutua" data-department="technology">
+                                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&h=300&fit=crop&crop=face" alt="Ms. Faith Mutua, IT Coordinator" class="w-full h-64 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold text-gray-900 mb-1">Ms. Faith Mutua</h3>
+                                    <p class="text-riara-brown font-medium mb-3">IT Coordinator</p>
+                                    <p class="text-sm text-gray-600 mb-4">B.Sc in Computer Science, 6 years experience. Manages school technology infrastructure and digital learning platforms.</p>
+                                    <div class="flex space-x-3">
+                                        <a href="mailto:it@riaraschools.ac.ke" class="text-gray-400 hover:text-riara-brown transition-colors duration-200" aria-label="Email Ms. Mutua">
+                                            <i data-lucide="mail" class="w-5 h-5"></i>
+                                        </a>
+                                        <a href="#" class="text-gray-400 hover:text-riara-brown transition-colors duration-200" aria-label="LinkedIn profile">
+                                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- No Results Message -->
+                        <div id="no-results" class="text-center py-12 hidden">
+                            <i data-lucide="search-x" class="w-12 h-12 text-gray-400 mx-auto mb-4"></i>
+                            <h3 class="text-lg font-medium text-gray-900 mb-2">No staff members found</h3>
+                            <p class="text-gray-600">Try adjusting your search criteria or filters.</p>
+                        </div>
+
+                        <!-- Load More Button -->
+                        <div class="text-center mt-12">
+                            <button class="inline-flex items-center px-6 py-3 border border-gray-300 rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-200">
+                                View More Staff
+                                <i data-lucide="chevron-down" class="ml-2 w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Departments -->
+                <section class="py-16 bg-gray-50">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="text-center mb-12">
+                            <h2 class="text-3xl font-bold text-gray-900 tracking-tight mb-4">Departments</h2>
+                            <p class="text-lg text-gray-600">Our academic and support departments</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div class="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow duration-200">
+                                <div class="w-12 h-12 bg-riara-brown/10 rounded-lg flex items-center justify-center mb-4">
+                                    <i data-lucide="calculator" class="w-6 h-6 text-riara-brown"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold text-gray-900 mb-2">Mathematics Department</h3>
+                                <p class="text-sm text-gray-600 mb-3">Building strong mathematical foundations from basic arithmetic to advanced calculus.</p>
+                                <div class="text-xs text-gray-500">8 Teachers</div>
+                            </div>
+
+                            <div class="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow duration-200">
+                                <div class="w-12 h-12 bg-riara-brown/10 rounded-lg flex items-center justify-center mb-4">
+                                    <i data-lucide="flask-conical" class="w-6 h-6 text-riara-brown"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold text-gray-900 mb-2">Sciences Department</h3>
+                                <p class="text-sm text-gray-600 mb-3">Exploring physics, chemistry, biology, and environmental science through hands-on learning.</p>
+                                <div class="text-xs text-gray-500">12 Teachers</div>
+                            </div>
+
+                            <div class="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow duration-200">
+                                <div class="w-12 h-12 bg-riara-brown/10 rounded-lg flex items-center justify-center mb-4">
+                                    <i data-lucide="book-open" class="w-6 h-6 text-riara-brown"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold text-gray-900 mb-2">Languages Department</h3>
+                                <p class="text-sm text-gray-600 mb-3">Developing communication skills in English, Kiswahili, and French through literature and linguistics.</p>
+                                <div class="text-xs text-gray-500">10 Teachers</div>
+                            </div>
+
+                            <div class="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow duration-200">
+                                <div class="w-12 h-12 bg-riara-brown/10 rounded-lg flex items-center justify-center mb-4">
+                                    <i data-lucide="globe" class="w-6 h-6 text-riara-brown"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold text-gray-900 mb-2">Humanities Department</h3>
+                                <p class="text-sm text-gray-600 mb-3">Understanding history, geography, and social studies to build global citizens.</p>
+                                <div class="text-xs text-gray-500">9 Teachers</div>
+                            </div>
+
+                            <div class="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow duration-200">
+                                <div class="w-12 h-12 bg-riara-brown/10 rounded-lg flex items-center justify-center mb-4">
+                                    <i data-lucide="palette" class="w-6 h-6 text-riara-brown"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold text-gray-900 mb-2">Arts Department</h3>
+                                <p class="text-sm text-gray-600 mb-3">Fostering creativity through visual arts, music, drama, and digital media.</p>
+                                <div class="text-xs text-gray-500">6 Teachers</div>
+                            </div>
+
+                            <div class="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow duration-200">
+                                <div class="w-12 h-12 bg-riara-brown/10 rounded-lg flex items-center justify-center mb-4">
+                                    <i data-lucide="heart-pulse" class="w-6 h-6 text-riara-brown"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold text-gray-900 mb-2">Student Support</h3>
+                                <p class="text-sm text-gray-600 mb-3">Providing counseling, guidance, and wellness services for student success.</p>
+                                <div class="text-xs text-gray-500">4 Counselors</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Join Our Team -->
+                <section class="py-16">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="bg-riara-brown/5 rounded-lg p-8 lg:p-12 text-center">
+                            <h2 class="text-2xl font-bold text-gray-900 tracking-tight mb-4">Join Our Team</h2>
+                            <p class="text-lg text-gray-600 mb-6 max-w-2xl mx-auto">We're always looking for passionate educators and support staff to join our mission of providing exceptional education.</p>
+                            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                                <a href="#" class="inline-flex items-center bg-riara-brown text-white px-6 py-3 rounded-lg font-medium hover:bg-riara-brown/90 transition-colors duration-200">
+                                    <i data-lucide="briefcase" class="mr-2 w-5 h-5"></i>
+                                    View Open Positions
+                                </a>
+                                <a href="contact.html" class="inline-flex items-center border border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-50 transition-colors duration-200">
+                                    <i data-lucide="phone" class="mr-2 w-5 h-5"></i>
+                                    Contact HR
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </section>
+    </div>
 
     <!-- CONTACT PAGE -->
     <div id="contact" class="page">
